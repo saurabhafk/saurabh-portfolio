@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Syne } from "next/font/google";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import "./globals.css";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className={`${syne.variable} ${dmSans.variable} antialiased`}>
         <SiteHeader />
         {children}
+        <ChatWidget />
       </body>
     </html>
   );
