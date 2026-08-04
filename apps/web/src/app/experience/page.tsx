@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TechBadge } from "@/components/icons/TechBadge";
 import { Reveal } from "@/components/motion/Reveal";
 import { getContent } from "@/lib/content";
 
@@ -42,13 +43,11 @@ export default function ExperiencePage() {
                 </ul>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {role.stack.map((tag) => (
-                    <Link
+                    <TechBadge
                       key={tag}
+                      name={tag}
                       href={`/skills#${tag}`}
-                      className="badge badge-outline badge-sm font-mono"
-                    >
-                      {tag}
-                    </Link>
+                    />
                   ))}
                 </div>
               </div>

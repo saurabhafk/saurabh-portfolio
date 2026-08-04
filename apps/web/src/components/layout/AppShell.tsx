@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
+import { SocialLink } from "@/components/icons/SocialLink";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const nav = [
@@ -39,14 +40,17 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
         <div className="flex items-center gap-1">
           <ThemeToggle />
-          <a
+          <SocialLink
+            network="linkedin"
             href="https://linkedin.com/in/saurabhafk"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-ghost btn-xs font-mono"
-          >
-            LinkedIn
-          </a>
+            className="btn btn-ghost btn-xs gap-1.5 font-mono"
+          />
+          <SocialLink
+            network="github"
+            href="https://github.com/saurabhafk"
+            className="btn btn-ghost btn-xs btn-square"
+            iconOnly
+          />
         </div>
       </header>
 

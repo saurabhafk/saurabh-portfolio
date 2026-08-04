@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { OpenChatButton } from "@/components/home/OpenChatButton";
+import { SocialLink } from "@/components/icons/SocialLink";
+import { TechBadge } from "@/components/icons/TechBadge";
+import { TechIcon } from "@/components/icons/TechIcon";
 import { Reveal } from "@/components/motion/Reveal";
 import { getContent } from "@/lib/content";
 
@@ -34,7 +37,8 @@ export default function Home() {
                   <h1 className="font-display mt-2 text-4xl font-bold tracking-tight md:text-6xl">
                     Saurabh Srivastava
                   </h1>
-                  <p className="mt-2 text-xl text-base-content/80 md:text-2xl">
+                  <p className="mt-2 flex items-center gap-2 text-xl text-base-content/80 md:text-2xl">
+                    <TechIcon name="react-native" className="h-6 w-6 text-[#61DAFB]" />
                     React Native Engineer
                   </p>
 
@@ -46,11 +50,9 @@ export default function Home() {
                         <div className="stat-desc">years shipping apps</div>
                       </div>
                     </div>
-                    <span className="badge badge-primary badge-outline">
-                      Android & iOS
-                    </span>
-                    <span className="badge badge-outline">Redux Toolkit</span>
-                    <span className="badge badge-outline">TypeScript</span>
+                    <TechBadge name="react-native" size="md" className="badge-primary badge-outline" />
+                    <TechBadge name="redux-toolkit" size="md" />
+                    <TechBadge name="typescript" size="md" />
                   </div>
 
                   <p className="mt-6 max-w-2xl text-base leading-relaxed text-base-content/75 md:text-lg">
@@ -75,12 +77,12 @@ export default function Home() {
                       View portfolio
                     </Link>
                     <OpenChatButton />
-                    <a
+                    <SocialLink
+                      network="email"
                       href="mailto:saurabhsri98@gmail.com"
-                      className="btn btn-ghost"
-                    >
-                      Message
-                    </a>
+                      label="Message"
+                      className="btn btn-ghost gap-2"
+                    />
                   </div>
                 </div>
               </div>
@@ -125,9 +127,7 @@ export default function Home() {
                 <div className="p-5">
                   <div className="flex flex-wrap gap-2">
                     {project.stack.slice(0, 4).map((tag) => (
-                      <span key={tag} className="badge badge-sm badge-outline font-mono">
-                        {tag}
-                      </span>
+                      <TechBadge key={tag} name={tag} />
                     ))}
                   </div>
                   <h3 className="font-display mt-3 text-2xl font-semibold">
@@ -188,13 +188,14 @@ export default function Home() {
           </h2>
           <div className="flex flex-wrap gap-2">
             {skills.slice(0, 12).map((skill) => (
-              <Link
+              <TechBadge
                 key={skill.id}
+                name={skill.name}
+                icon={skill.id}
                 href={`/skills#${skill.id}`}
-                className="badge badge-lg badge-outline font-mono hover:badge-primary"
-              >
-                {skill.name}
-              </Link>
+                size="lg"
+                className="badge-outline font-mono hover:badge-primary"
+              />
             ))}
           </div>
         </Reveal>

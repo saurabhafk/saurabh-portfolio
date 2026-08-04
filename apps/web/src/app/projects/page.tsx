@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TechBadge } from "@/components/icons/TechBadge";
 import { Reveal } from "@/components/motion/Reveal";
 import { getContent } from "@/lib/content";
 
@@ -42,9 +43,7 @@ export default function ProjectsPage() {
               <div className="p-5">
                 <div className="flex flex-wrap gap-2">
                   {project.stack.slice(0, 4).map((tag) => (
-                    <span key={tag} className="badge badge-sm badge-outline font-mono">
-                      {tag}
-                    </span>
+                    <TechBadge key={tag} name={tag} />
                   ))}
                 </div>
                 <h2 className="font-display mt-3 text-2xl font-semibold">

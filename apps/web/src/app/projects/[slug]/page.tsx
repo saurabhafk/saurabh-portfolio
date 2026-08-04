@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MarkdownBody } from "@/components/content/MarkdownBody";
+import { TechBadge } from "@/components/icons/TechBadge";
 import { Reveal } from "@/components/motion/Reveal";
 import { getContent } from "@/lib/content";
 
@@ -41,13 +42,12 @@ export default async function ProjectDetailPage({ params }: Props) {
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               {project.stack.map((tag) => (
-                <Link
+                <TechBadge
                   key={tag}
+                  name={tag}
                   href={`/skills#${tag}`}
-                  className="badge badge-outline font-mono"
-                >
-                  {tag}
-                </Link>
+                  size="md"
+                />
               ))}
             </div>
           </div>

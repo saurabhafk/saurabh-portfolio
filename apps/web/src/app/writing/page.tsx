@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TechBadge } from "@/components/icons/TechBadge";
 import { Reveal } from "@/components/motion/Reveal";
 import { getContent } from "@/lib/content";
 
@@ -26,9 +27,7 @@ export default function WritingPage() {
               <p className="mt-2 text-base-content/70">{post.summary}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <span key={tag} className="badge badge-sm badge-outline font-mono">
-                    {tag}
-                  </span>
+                  <TechBadge key={tag} name={tag} />
                 ))}
               </div>
             </Link>

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { TechBadge } from "@/components/icons/TechBadge";
+import { TechIcon } from "@/components/icons/TechIcon";
 import { Reveal } from "@/components/motion/Reveal";
 import { getContent } from "@/lib/content";
 
@@ -38,7 +40,14 @@ export default function SkillsPage() {
                 id={skill.id}
                 className="vscode-panel rounded-box scroll-mt-28 p-5"
               >
-                <h2 className="font-display text-xl font-semibold">{skill.name}</h2>
+                <h2 className="font-display flex items-center gap-3 text-xl font-semibold">
+                  <TechIcon
+                    name={skill.id}
+                    className="h-6 w-6 shrink-0"
+                    title={skill.name}
+                  />
+                  {skill.name}
+                </h2>
                 <p className="mt-1 font-mono text-xs text-base-content/45">
                   id: {skill.id}
                 </p>
@@ -68,6 +77,9 @@ export default function SkillsPage() {
                     Writing: {post.title}
                   </Link>
                 ))}
+                <div className="mt-4">
+                  <TechBadge name={skill.name} icon={skill.id} size="md" />
+                </div>
               </article>
             </Reveal>
           );

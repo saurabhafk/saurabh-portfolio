@@ -1,4 +1,5 @@
 import { MarkdownBody } from "@/components/content/MarkdownBody";
+import { SocialLink } from "@/components/icons/SocialLink";
 import { Reveal } from "@/components/motion/Reveal";
 import { getContent } from "@/lib/content";
 
@@ -23,25 +24,21 @@ export default function AboutPage() {
               <MarkdownBody content={about.body} />
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="mailto:saurabhsri98@gmail.com" className="btn btn-primary">
-                Email
-              </a>
-              <a
+              <SocialLink
+                network="email"
+                href="mailto:saurabhsri98@gmail.com"
+                className="btn btn-primary gap-2"
+              />
+              <SocialLink
+                network="linkedin"
                 href="https://linkedin.com/in/saurabhafk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn"
-              >
-                LinkedIn
-              </a>
-              <a
+                className="btn gap-2"
+              />
+              <SocialLink
+                network="github"
                 href="https://github.com/saurabhafk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-ghost"
-              >
-                GitHub
-              </a>
+                className="btn btn-ghost gap-2"
+              />
             </div>
           </div>
         </div>
