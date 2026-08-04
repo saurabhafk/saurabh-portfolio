@@ -4,6 +4,7 @@ import type { OllamaClient } from "./lib/ollama.js";
 import type { VectorStore } from "./lib/vector-store.js";
 import { chatRouter } from "./routes/chat.js";
 import { healthRouter } from "./routes/health.js";
+import { reindexRouter } from "./routes/reindex.js";
 
 export type AppDeps = {
   checkOllama: () => Promise<boolean>;
@@ -31,6 +32,17 @@ export function createApp(deps: AppDeps) {
         ollama: deps.ollama,
         store: deps.store,
         relevanceThreshold: deps.relevanceThreshold ?? 0.35,
+      })
+    );
+  }
+
+  if (deps.ollama && deps.store && deps.contentDir && deps.reindexSecret) {
+    app.use(
+      reindexRouter({
+        contentDir: deps.contentDir,
+        store: deps.store,
+        ollama: deps.ollama,
+        secret: deps.reindexSecret,
       })
     );
   }

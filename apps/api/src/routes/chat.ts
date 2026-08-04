@@ -1,4 +1,5 @@
 import { Router } from "express";
+import rateLimit from "express-rate-limit";
 import { z } from "zod";
 import type { OllamaClient } from "../lib/ollama.js";
 import type { VectorStore } from "../lib/vector-store.js";
@@ -27,7 +28,14 @@ export function chatRouter(opts: {
 }) {
   const router = Router();
 
-  router.post("/api/chat", async (req, res) => {
+  const chatLimiter = rateLimit({
+    windowMs: 60_000,
+    max: 30,
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+
+  router.post("/api/chat", chatLimiter, async (req, res) => {
     const parsed = bodySchema.safeParse(req.body);
     if (!parsed.success) {
       res.status(400).json({ error: "Invalid body" });
