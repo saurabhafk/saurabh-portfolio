@@ -1,1 +1,1 @@
-console.log("api scaffold");
+export {};
