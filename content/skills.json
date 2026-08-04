@@ -1,0 +1,22 @@
+{
+  "skills": [
+    {
+      "id": "react-native",
+      "name": "React Native",
+      "projectSlugs": ["fittrack"],
+      "writingSlugs": []
+    },
+    {
+      "id": "redux-toolkit",
+      "name": "Redux Toolkit",
+      "projectSlugs": ["fittrack"],
+      "writingSlugs": ["redux-in-rn"]
+    },
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "projectSlugs": ["fittrack"],
+      "writingSlugs": []
+    }
+  ]
+}
