@@ -12,27 +12,90 @@
 
 ---
 
+## Conventions (industry standard — required)
+
+Follow these for every task. Reviewers must flag violations.
+
+**Monorepo layout**
+```
+/
+  apps/
+    web/                 # Next.js frontend (Vercel)
+    api/                 # Express API (VPS)
+  packages/
+    content-core/        # Shared domain: types, load, chunks
+  content/               # Content-as-data (not UI code)
+  docs/
+  .nvmrc                 # Node LTS pin (e.g. 22)
+  package.json           # npm workspaces root
+  README.md
+```
+
+**API layering (`apps/api/src/`)**
+```
+src/
+  index.ts               # process entry: listen + startup only
+  app.ts                 # createApp(deps) — middleware + route mount
+  config/
+    env.ts               # loadConfig / typed env
+  middleware/            # cross-cutting (rate limit helpers if extracted)
+  routes/                # HTTP adapters only (validate → call service → respond)
+  services/              # business logic (rag, reindex)
+  lib/                   # infrastructure (ollama client, vector-store)
+  types/                 # API-only types if needed (prefer content-core)
+```
+
+**Web layering (`apps/web/src/`)**
+```
+src/
+  app/                   # Next.js App Router routes only
+  components/            # UI components (PascalCase files)
+    chat/                # ChatWidget, ChatMarkdown (feature folder)
+    layout/              # SiteHeader, etc.
+  lib/                   # pure helpers (content.ts, api.ts)
+  styles/                # only if globals.css is not enough
+```
+
+**Naming**
+- Files/folders: `kebab-case` for non-React modules (`vector-store.ts`, `rate-limit.ts`)
+- React components: `PascalCase.tsx` (`ChatWidget.tsx`)
+- Functions/variables: `camelCase`; types/interfaces: `PascalCase`
+- npm packages: `@portfolio/<name>`
+- Tests: co-located `*.test.ts` next to the unit under test
+- Env: `SCREAMING_SNAKE`; document in `.env.example` only (never commit secrets)
+
+**Code-smell guards**
+- One responsibility per file; routes stay thin
+- No god objects; inject `OllamaClient` / `VectorStore` for testability
+- No deep relative imports across packages — use `@portfolio/content-core`
+- No unused exports, dead code, or speculative “future CMS” abstractions
+- Prefer explicit names over abbreviations (`contentDir` not `cDir`)
+
 ## File structure
 
 | Path | Responsibility |
 |------|----------------|
-| `package.json` | npm workspaces root |
+| `package.json` | npm workspaces root + `engines.node` |
+| `.nvmrc` | Node 22 |
 | `content/**` | Source of truth: about, skills, projects, experience, writing |
-| `packages/content-core/` | Shared types, markdown loader, chunk builder (used by web + api) |
-| `apps/api/src/index.ts` | Express app bootstrap |
-| `apps/api/src/config.ts` | Env: PORT, CORS_ORIGINS, REINDEX_SECRET, OLLAMA_URL, models |
-| `apps/api/src/ollama.ts` | Embed + chat HTTP client (injectable for tests) |
-| `apps/api/src/vector-store.ts` | In-memory vectors + persist `data/index.json` |
-| `apps/api/src/rag.ts` | Retrieve + build prompt + parse reply |
+| `packages/content-core/` | Shared types, markdown loader, chunk builder |
+| `apps/api/src/index.ts` | Listen + startup reindex only |
+| `apps/api/src/app.ts` | `createApp(deps)` |
+| `apps/api/src/config/env.ts` | Typed env loader |
+| `apps/api/src/lib/ollama.ts` | Embed + chat client |
+| `apps/api/src/lib/vector-store.ts` | Vectors + `data/index.json` |
+| `apps/api/src/services/rag.ts` | Retrieve + prompt |
+| `apps/api/src/services/reindex.ts` | Rebuild index from content |
 | `apps/api/src/routes/chat.ts` | `POST /api/chat` |
 | `apps/api/src/routes/reindex.ts` | `POST /api/reindex` |
 | `apps/api/src/routes/health.ts` | `GET /api/health` |
-| `apps/api/src/middleware/rate-limit.ts` | Per-IP throttle for chat |
-| `apps/api/src/middleware/cors.ts` | Origin allowlist |
-| `apps/web/` | Next.js portfolio + ChatWidget |
-| `apps/web/src/components/ChatWidget.tsx` | Floating chat UI |
+| `apps/web/src/components/chat/` | ChatWidget + ChatMarkdown |
+| `apps/web/src/components/layout/` | SiteHeader |
 | `apps/web/src/lib/api.ts` | Chat API client |
+| `apps/web/src/lib/content.ts` | Load shared content for pages |
 | `docs/deploy.md` | Vercel + VPS + Ollama deploy notes |
+
+**Note:** Plan task snippets may show older flat paths (`config.ts`, `create-app.ts`). Prefer the layered paths above when implementing; keep exports/behavior identical to the task specs.
 
 ---
 
