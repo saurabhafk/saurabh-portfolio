@@ -6,75 +6,136 @@ import { getContent } from "@/lib/content";
 export default function Home() {
   const { projects, experience, skills, about } = getContent();
   const featured = projects.filter((p) => p.featured);
-  const topSkills = skills.slice(0, 8);
+  const companies = [...new Set(experience.map((e) => e.company))];
 
   return (
     <main>
-      <section className="hero min-h-[92vh]">
-        <div className="hero-content flex-col items-start gap-8 py-20 lg:max-w-4xl">
+      {/* Profile hero — Wall of Portfolios energy */}
+      <section className="border-base-300 border-b">
+        <div className="section-shell !py-14 md:!py-20">
           <Reveal>
-            <div className="badge badge-primary badge-outline mb-2">
-              React Native · Full-stack path
-            </div>
-            <h1 className="font-display text-5xl font-extrabold tracking-tight md:text-7xl">
-              Saurabh
-            </h1>
-            <p className="font-display mt-4 max-w-2xl text-2xl font-semibold text-base-content/90 md:text-3xl">
-              React Native apps, with a backend/AI path
-            </p>
-            <p className="mt-4 max-w-2xl text-lg text-base-content/70">
-              {about.body.split("\n\n")[0]}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/projects" className="btn btn-primary">
-                View projects
-              </Link>
-              <OpenChatButton />
-              <Link href="/experience" className="btn btn-ghost">
-                Experience
-              </Link>
+            <div className="vscode-panel rounded-box overflow-hidden">
+              <div className="border-base-300 bg-base-300/40 flex items-center justify-between border-b px-4 py-2 font-mono text-xs">
+                <span className="code-token-comment">{"// profile.ts"}</span>
+                <span className="badge badge-sm badge-success badge-outline">
+                  Open to work
+                </span>
+              </div>
+
+              <div className="grid gap-8 p-6 md:grid-cols-[auto_1fr] md:p-10">
+                <div className="bg-base-300 text-base-content/80 flex h-28 w-28 items-center justify-center rounded-full font-mono text-3xl md:h-36 md:w-36">
+                  SS
+                </div>
+
+                <div>
+                  <p className="font-mono text-xs text-base-content/50">
+                    @saurabhafk · India
+                  </p>
+                  <h1 className="font-display mt-2 text-4xl font-bold tracking-tight md:text-6xl">
+                    Saurabh Srivastava
+                  </h1>
+                  <p className="mt-2 text-xl text-base-content/80 md:text-2xl">
+                    React Native Engineer
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <div className="stats bg-base-100 border-base-300 stats-horizontal border shadow-none">
+                      <div className="stat px-4 py-3">
+                        <div className="stat-title text-xs">Experience</div>
+                        <div className="stat-value text-primary text-2xl">3+</div>
+                        <div className="stat-desc">years shipping apps</div>
+                      </div>
+                    </div>
+                    <span className="badge badge-primary badge-outline">
+                      Android & iOS
+                    </span>
+                    <span className="badge badge-outline">Redux Toolkit</span>
+                    <span className="badge badge-outline">TypeScript</span>
+                  </div>
+
+                  <p className="mt-6 max-w-2xl text-base leading-relaxed text-base-content/75 md:text-lg">
+                    {about.body.split("\n\n")[0]}
+                  </p>
+
+                  <div className="mt-4">
+                    <p className="font-mono text-xs text-base-content/50">
+                      Experience includes
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {companies.map((company) => (
+                        <span key={company} className="badge badge-neutral">
+                          {company}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Link href="/projects" className="btn btn-primary">
+                      View portfolio
+                    </Link>
+                    <OpenChatButton />
+                    <a
+                      href="mailto:saurabhsri98@gmail.com"
+                      className="btn btn-ghost"
+                    >
+                      Message
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>
       </section>
 
+      {/* Selected work */}
       <section className="section-shell" id="work">
         <Reveal>
-          <div className="mb-10 flex items-end justify-between gap-4">
+          <div className="mb-8 flex items-end justify-between gap-4">
             <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-base-content/50">
-                Selected work
+              <p className="font-mono text-xs text-base-content/50">
+                <span className="code-token-keyword">const</span> work = [
               </p>
-              <h2 className="font-display mt-2 text-3xl font-bold md:text-4xl">
-                Apps shipped in production
+              <h2 className="font-display mt-1 text-3xl font-semibold md:text-4xl">
+                Selected work
               </h2>
             </div>
-            <Link href="/projects" className="btn btn-sm hidden sm:inline-flex">
-              All projects
+            <Link href="/projects" className="btn btn-sm btn-ghost font-mono">
+              all projects →
             </Link>
           </div>
         </Reveal>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {featured.map((project, index) => (
-            <Reveal key={project.slug} delay={index * 0.08}>
+            <Reveal key={project.slug} delay={index * 0.06}>
               <Link
                 href={`/projects/${project.slug}`}
-                className="card bg-base-200/80 border-base-300 hover:border-primary/40 h-full border transition duration-300 hover:-translate-y-1"
+                className="vscode-panel group rounded-box block overflow-hidden transition hover:-translate-y-0.5"
               >
-                <div className="card-body">
+                <div className="border-base-300 flex items-center justify-between border-b px-4 py-2 font-mono text-xs">
+                  <span className="code-token-string">
+                    &quot;{project.slug}.tsx&quot;
+                  </span>
+                  <span className="text-base-content/40 group-hover:text-primary">
+                    open
+                  </span>
+                </div>
+                <div className="p-5">
                   <div className="flex flex-wrap gap-2">
-                    {project.stack.slice(0, 3).map((tag) => (
-                      <span key={tag} className="badge badge-sm">
+                    {project.stack.slice(0, 4).map((tag) => (
+                      <span key={tag} className="badge badge-sm badge-outline font-mono">
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <h3 className="card-title font-display mt-2">{project.title}</h3>
-                  <p className="text-base-content/70">{project.summary}</p>
-                  <div className="card-actions mt-4 justify-end">
-                    <span className="link link-primary text-sm">Read case</span>
-                  </div>
+                  <h3 className="font-display mt-3 text-2xl font-semibold">
+                    {project.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-base-content/70">
+                    {project.summary}
+                  </p>
                 </div>
               </Link>
             </Reveal>
@@ -82,89 +143,84 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-shell pt-0" id="experience">
+      {/* Experience strip */}
+      <section className="section-shell !pt-0" id="experience">
         <Reveal>
-          <p className="text-sm uppercase tracking-[0.2em] text-base-content/50">
-            Experience
+          <p className="font-mono text-xs text-base-content/50">
+            <span className="code-token-comment">{"// career.log"}</span>
           </p>
-          <h2 className="font-display mt-2 mb-10 text-3xl font-bold md:text-4xl">
-            3+ years building mobile products
+          <h2 className="font-display mt-1 mb-8 text-3xl font-semibold">
+            Experience
           </h2>
         </Reveal>
 
-        <ul className="timeline timeline-vertical timeline-snap-icon max-md:timeline-compact">
+        <div className="space-y-3">
           {experience.map((role, index) => (
-            <li key={role.id}>
-              {index > 0 && <hr className="bg-primary/40" />}
-              <div className="timeline-middle">
-                <span className="bg-primary status status-lg" />
-              </div>
-              <div
-                className={`timeline-box bg-base-200/80 border-base-300 mb-8 border ${
-                  index % 2 === 0 ? "timeline-start md:text-end" : "timeline-end"
-                }`}
+            <Reveal key={role.id} delay={index * 0.04}>
+              <Link
+                href={`/experience#${role.id}`}
+                className="vscode-panel rounded-box hover:border-primary/50 flex flex-col gap-2 border border-transparent p-4 transition md:flex-row md:items-center md:justify-between"
               >
-                <Reveal delay={0.05}>
-                  <time className="text-xs text-base-content/50">
-                    {role.start} — {role.end}
-                  </time>
-                  <div className="font-display text-xl font-bold">{role.title}</div>
-                  <div className="text-primary font-medium">{role.company}</div>
-                  <p className="mt-2 text-sm text-base-content/70">{role.summary}</p>
-                </Reveal>
-              </div>
-              {index < experience.length - 1 && <hr className="bg-primary/40" />}
-            </li>
+                <div>
+                  <div className="font-display text-lg font-semibold">
+                    {role.title}
+                  </div>
+                  <div className="text-secondary text-sm">{role.company}</div>
+                </div>
+                <div className="font-mono text-xs text-base-content/50">
+                  {role.start} → {role.end}
+                </div>
+              </Link>
+            </Reveal>
           ))}
-        </ul>
-
-        <div className="mt-4">
-          <Link href="/experience" className="btn btn-outline btn-sm">
-            Full experience
-          </Link>
         </div>
       </section>
 
-      <section className="section-shell pt-0" id="skills">
+      {/* Skills */}
+      <section className="section-shell !pt-0" id="skills">
         <Reveal>
-          <p className="text-sm uppercase tracking-[0.2em] text-base-content/50">
-            Skills
+          <p className="font-mono text-xs text-base-content/50">
+            <span className="code-token-keyword">export</span>{" "}
+            <span className="code-token-fn">skills</span>
           </p>
-          <h2 className="font-display mt-2 mb-8 text-3xl font-bold md:text-4xl">
-            What I use day to day
+          <h2 className="font-display mt-1 mb-6 text-3xl font-semibold">
+            Toolkit
           </h2>
-        </Reveal>
-        <Reveal>
           <div className="flex flex-wrap gap-2">
-            {topSkills.map((skill) => (
+            {skills.slice(0, 12).map((skill) => (
               <Link
                 key={skill.id}
                 href={`/skills#${skill.id}`}
-                className="badge badge-lg badge-outline hover:badge-primary transition"
+                className="badge badge-lg badge-outline font-mono hover:badge-primary"
               >
                 {skill.name}
               </Link>
             ))}
           </div>
-          <Link href="/skills" className="btn btn-ghost btn-sm mt-6">
-            Browse all skills
-          </Link>
         </Reveal>
       </section>
 
-      <section className="section-shell pt-0 pb-28">
+      {/* Ask CTA */}
+      <section className="section-shell !pt-0 pb-24">
         <Reveal>
-          <div className="bg-base-200/80 border-base-300 rounded-box flex flex-col items-start gap-6 border p-8 md:flex-row md:items-center md:justify-between md:p-12">
-            <div>
-              <h2 className="font-display text-3xl font-bold">
-                Ask anything about this portfolio
-              </h2>
-              <p className="mt-2 max-w-xl text-base-content/70">
-                Try “Has Saurabh worked with Redux Toolkit?” — the chat deep-links
-                into the right project or skill.
-              </p>
+          <div className="vscode-panel rounded-box overflow-hidden">
+            <div className="border-base-300 border-b px-4 py-2 font-mono text-xs">
+              <span className="code-token-comment">
+                {"// terminal · ask about this portfolio"}
+              </span>
             </div>
-            <OpenChatButton className="btn-primary" />
+            <div className="flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between md:p-8">
+              <div>
+                <h2 className="font-display text-2xl font-semibold md:text-3xl">
+                  Has Saurabh worked with Redux Toolkit?
+                </h2>
+                <p className="mt-2 max-w-xl text-base-content/70">
+                  Ask the in-editor chatbot — answers deep-link into projects,
+                  skills, and writing.
+                </p>
+              </div>
+              <OpenChatButton className="btn-primary" />
+            </div>
           </div>
         </Reveal>
       </section>

@@ -24,13 +24,13 @@ export default async function WritingDetailPage({ params }: Props) {
   return (
     <main className="section-shell max-w-3xl">
       <Reveal>
-        <Link href="/writing" className="btn btn-ghost btn-sm mb-6">
-          ← Writing
+        <Link href="/writing" className="btn btn-ghost btn-sm mb-6 font-mono">
+          ← writing/
         </Link>
-        <h1 className="font-display text-4xl font-bold md:text-5xl">{post.title}</h1>
+        <h1 className="font-display text-4xl font-bold">{post.title}</h1>
         <p className="mt-3 text-base-content/70">{post.summary}</p>
       </Reveal>
-      <Reveal className="prose-portfolio mt-10" delay={0.08}>
+      <Reveal className="prose-portfolio mt-8" delay={0.08}>
         <MarkdownBody content={post.body} />
       </Reveal>
     </main>

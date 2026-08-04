@@ -10,26 +10,26 @@ export default function WritingPage() {
   return (
     <main className="section-shell max-w-3xl">
       <Reveal>
-        <p className="text-sm uppercase tracking-[0.2em] text-base-content/50">Notes</p>
-        <h1 className="font-display mt-2 text-4xl font-bold md:text-5xl">Writing</h1>
+        <p className="font-mono text-xs text-base-content/50">
+          <span className="code-token-comment">{"// notes.md"}</span>
+        </p>
+        <h1 className="font-display mt-2 text-4xl font-bold">Writing</h1>
       </Reveal>
-      <div className="mt-10 space-y-4">
+      <div className="mt-10 space-y-3">
         {writing.map((post, index) => (
           <Reveal key={post.slug} delay={index * 0.05}>
             <Link
               href={`/writing/${post.slug}`}
-              className="card bg-base-200/80 border-base-300 block border transition hover:-translate-y-0.5"
+              className="vscode-panel rounded-box block p-5 transition hover:-translate-y-0.5"
             >
-              <div className="card-body">
-                <h2 className="card-title font-display">{post.title}</h2>
-                <p className="text-base-content/70">{post.summary}</p>
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span key={tag} className="badge badge-sm badge-outline">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+              <h2 className="font-display text-2xl font-semibold">{post.title}</h2>
+              <p className="mt-2 text-base-content/70">{post.summary}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <span key={tag} className="badge badge-sm badge-outline font-mono">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </Link>
           </Reveal>

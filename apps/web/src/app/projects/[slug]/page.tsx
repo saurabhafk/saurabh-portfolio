@@ -24,21 +24,36 @@ export default async function ProjectDetailPage({ params }: Props) {
   return (
     <main className="section-shell max-w-3xl">
       <Reveal>
-        <Link href="/projects" className="btn btn-ghost btn-sm mb-6">
-          ← Projects
+        <Link href="/projects" className="btn btn-ghost btn-sm mb-6 font-mono">
+          ← projects/
         </Link>
-        <h1 className="font-display text-4xl font-bold md:text-5xl">{project.title}</h1>
-        <p className="mt-3 text-lg text-base-content/70">{project.summary}</p>
-        <p className="mt-2 text-sm text-base-content/50">{project.role}</p>
-        <div className="mt-6 flex flex-wrap gap-2">
-          {project.stack.map((tag) => (
-            <Link key={tag} href={`/skills#${tag}`} className="badge badge-outline">
-              {tag}
-            </Link>
-          ))}
+        <div className="vscode-panel rounded-box overflow-hidden">
+          <div className="border-base-300 border-b px-4 py-2 font-mono text-xs">
+            <span className="code-token-string">
+              &quot;{project.slug}.tsx&quot;
+            </span>
+          </div>
+          <div className="p-6 md:p-8">
+            <h1 className="font-display text-4xl font-bold">{project.title}</h1>
+            <p className="mt-3 text-lg text-base-content/70">{project.summary}</p>
+            <p className="mt-2 font-mono text-xs text-base-content/50">
+              {project.role}
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {project.stack.map((tag) => (
+                <Link
+                  key={tag}
+                  href={`/skills#${tag}`}
+                  className="badge badge-outline font-mono"
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </Reveal>
-      <Reveal className="prose-portfolio mt-10" delay={0.1}>
+      <Reveal className="prose-portfolio mt-8" delay={0.08}>
         <MarkdownBody content={project.body} />
       </Reveal>
     </main>

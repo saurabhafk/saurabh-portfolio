@@ -10,32 +10,41 @@ export default function AboutPage() {
   return (
     <main className="section-shell max-w-3xl">
       <Reveal>
-        <p className="text-sm uppercase tracking-[0.2em] text-base-content/50">Profile</p>
-        <h1 className="font-display mt-2 text-4xl font-bold md:text-5xl">{about.title}</h1>
-      </Reveal>
-      <Reveal className="prose-portfolio mt-10" delay={0.08}>
-        <MarkdownBody content={about.body} />
-      </Reveal>
-      <Reveal className="mt-10 flex flex-wrap gap-3" delay={0.12}>
-        <a href="mailto:saurabhsri98@gmail.com" className="btn btn-primary">
-          Email Saurabh
-        </a>
-        <a
-          href="https://linkedin.com/in/saurabhafk"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn"
-        >
-          LinkedIn
-        </a>
-        <a
-          href="https://github.com/saurabhafk"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn btn-ghost"
-        >
-          GitHub
-        </a>
+        <div className="vscode-panel rounded-box overflow-hidden">
+          <div className="border-base-300 border-b px-4 py-2 font-mono text-xs">
+            <span className="code-token-string">&quot;about.md&quot;</span>
+          </div>
+          <div className="p-6 md:p-8">
+            <p className="font-mono text-xs text-base-content/50">
+              @saurabhafk · India · Open to work
+            </p>
+            <h1 className="font-display mt-2 text-4xl font-bold">{about.title}</h1>
+            <div className="prose-portfolio mt-6">
+              <MarkdownBody content={about.body} />
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="mailto:saurabhsri98@gmail.com" className="btn btn-primary">
+                Email
+              </a>
+              <a
+                href="https://linkedin.com/in/saurabhafk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/saurabhafk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
       </Reveal>
     </main>
   );

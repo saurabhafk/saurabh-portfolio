@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
-import { DM_Sans, Syne } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { ChatWidget } from "@/components/chat/ChatWidget";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
 
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -26,17 +25,31 @@ export const metadata: Metadata = {
     "React Native developer with 3+ years building Android & iOS apps. Redux Toolkit, APIs, deep linking, notifications, and in-app purchases.",
 };
 
+const themeInitScript = `
+(function () {
+  try {
+    var t = localStorage.getItem('portfolio-theme');
+    document.documentElement.setAttribute('data-theme', t === 'vscode-light' ? 'vscode-light' : 'vscode-dark');
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'vscode-dark');
+  }
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="saurabh">
-      <body className={`${syne.variable} ${dmSans.variable} bg-base-100 text-base-content antialiased`}>
-        <SiteHeader />
-        {children}
-        <SiteFooter />
+    <html lang="en" data-theme="vscode-dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body
+        className={`${plexSans.variable} ${plexMono.variable} bg-base-100 text-base-content antialiased`}
+      >
+        <AppShell>{children}</AppShell>
         <ChatWidget />
       </body>
     </html>
