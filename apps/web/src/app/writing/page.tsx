@@ -1,42 +1,40 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { Reveal } from "@/components/motion/Reveal";
 import { getContent } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Writing",
-  description: "Technical writing and deep dives by Saurabh.",
-};
+export const metadata = { title: "Writing" };
 
 export default function WritingPage() {
   const { writing } = getContent();
-  const sorted = [...writing].sort((a, b) =>
-    b.publishedAt.localeCompare(a.publishedAt)
-  );
 
   return (
-    <main className="page">
-      <h1 className="page__title">Writing</h1>
-      <p className="page__subtitle">
-        Notes on mobile architecture, state management, and full-stack patterns.
-      </p>
-      <ul className="content-list">
-        {sorted.map((post) => (
-          <li key={post.slug}>
-            <Link href={`/writing/${post.slug}`} className="content-card">
-              <h2 className="content-card__title">{post.title}</h2>
-              <p className="content-card__meta">{post.publishedAt}</p>
-              <p className="content-card__summary">{post.summary}</p>
-              <ul className="tag-list">
-                {post.tags.map((tag) => (
-                  <li key={tag} className="tag">
-                    {tag}
-                  </li>
-                ))}
-              </ul>
+    <main className="section-shell max-w-3xl">
+      <Reveal>
+        <p className="text-sm uppercase tracking-[0.2em] text-base-content/50">Notes</p>
+        <h1 className="font-display mt-2 text-4xl font-bold md:text-5xl">Writing</h1>
+      </Reveal>
+      <div className="mt-10 space-y-4">
+        {writing.map((post, index) => (
+          <Reveal key={post.slug} delay={index * 0.05}>
+            <Link
+              href={`/writing/${post.slug}`}
+              className="card bg-base-200/80 border-base-300 block border transition hover:-translate-y-0.5"
+            >
+              <div className="card-body">
+                <h2 className="card-title font-display">{post.title}</h2>
+                <p className="text-base-content/70">{post.summary}</p>
+                <div className="flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <span key={tag} className="badge badge-sm badge-outline">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </Link>
-          </li>
+          </Reveal>
         ))}
-      </ul>
+      </div>
     </main>
   );
 }

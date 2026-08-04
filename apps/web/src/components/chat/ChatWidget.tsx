@@ -40,12 +40,10 @@ export function ChatWidget() {
 
     setError(null);
     setInput("");
-    const userMessage: ChatMessage = {
-      id: crypto.randomUUID(),
-      role: "user",
-      content: text,
-    };
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((prev) => [
+      ...prev,
+      { id: crypto.randomUUID(), role: "user", content: text },
+    ]);
     setLoading(true);
 
     try {
@@ -60,125 +58,134 @@ export function ChatWidget() {
         },
       ]);
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Chat request failed";
-      setError(message);
+      setError(err instanceof Error ? err.message : "Chat request failed");
     } finally {
       setLoading(false);
     }
   }
 
-  function askStarter() {
-    setInput(STARTER);
-  }
-
   return (
-    <div className="chat-widget">
+    <div className="fixed right-4 bottom-4 z-80 flex flex-col items-end gap-3">
       {open && (
-        <section
-          className="chat-panel"
-          aria-label="Ask about Saurabh's work"
-        >
-          <header className="chat-panel__header">
-            <div>
-              <p className="chat-panel__title">Ask the portfolio</p>
-              <p className="chat-panel__subtitle">
-                Answers link into projects, skills, and writing
-              </p>
-            </div>
-            <button
-              type="button"
-              className="chat-panel__close"
-              onClick={() => setOpen(false)}
-              aria-label="Close chat"
-            >
-              ×
-            </button>
-          </header>
-
-          <div className="chat-panel__messages" ref={listRef}>
-            {messages.length === 0 && (
-              <div className="chat-empty">
-                <p>Ask about skills, projects, or experience.</p>
-                <button
-                  type="button"
-                  className="chat-starter"
-                  onClick={askStarter}
-                >
-                  {STARTER}
-                </button>
+        <section className="card bg-base-200 border-base-300 h-[min(32rem,calc(100vh-7rem))] w-[min(24rem,calc(100vw-2rem))] border shadow-2xl">
+          <div className="card-body gap-0 p-0">
+            <header className="border-base-300 flex items-start justify-between gap-3 border-b p-4">
+              <div>
+                <h2 className="font-display font-bold">Ask the portfolio</h2>
+                <p className="text-xs text-base-content/60">
+                  Answers deep-link into your work
+                </p>
               </div>
-            )}
-
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`chat-bubble chat-bubble--${message.role}`}
+              <button
+                type="button"
+                className="btn btn-ghost btn-sm btn-circle"
+                aria-label="Close chat"
+                onClick={() => setOpen(false)}
               >
-                {message.role === "assistant" ? (
-                  <ChatMarkdown content={message.content} />
-                ) : (
-                  <p>{message.content}</p>
-                )}
-                {message.sources && message.sources.length > 0 && (
-                  <div className="chat-sources">
-                    {message.sources.map((source) => (
-                      <Link
-                        key={`${message.id}-${source.url}`}
-                        href={source.url}
-                        className="chat-source-chip"
-                        onClick={() => setOpen(false)}
-                      >
-                        {source.title}
-                      </Link>
-                    ))}
+                ✕
+              </button>
+            </header>
+
+            <div ref={listRef} className="flex-1 space-y-3 overflow-y-auto p-4">
+              {messages.length === 0 && (
+                <div className="space-y-3">
+                  <p className="text-sm text-base-content/70">
+                    Ask about skills, projects, or experience.
+                  </p>
+                  <button
+                    type="button"
+                    className="btn btn-outline btn-sm h-auto whitespace-normal py-2 text-left"
+                    onClick={() => setInput(STARTER)}
+                  >
+                    {STARTER}
+                  </button>
+                </div>
+              )}
+
+              {messages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`chat ${message.role === "user" ? "chat-end" : "chat-start"}`}
+                >
+                  <div
+                    className={`chat-bubble text-sm ${
+                      message.role === "user"
+                        ? "chat-bubble-primary"
+                        : "chat-bubble-neutral"
+                    }`}
+                  >
+                    {message.role === "assistant" ? (
+                      <ChatMarkdown content={message.content} />
+                    ) : (
+                      message.content
+                    )}
                   </div>
-                )}
-              </div>
-            ))}
+                  {message.sources && message.sources.length > 0 && (
+                    <div className="chat-footer mt-2 flex flex-wrap gap-2">
+                      {message.sources.map((source) => (
+                        <Link
+                          key={`${message.id}-${source.url}`}
+                          href={source.url}
+                          className="badge badge-outline badge-sm"
+                          onClick={() => setOpen(false)}
+                        >
+                          {source.title}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
 
-            {loading && (
-              <p className="chat-status" role="status">
-                Thinking…
-              </p>
-            )}
-            {error && (
-              <p className="chat-error" role="alert">
-                {error}
-              </p>
-            )}
-          </div>
+              {loading && (
+                <div className="chat chat-start">
+                  <div className="chat-bubble chat-bubble-neutral">
+                    <span className="loading loading-dots loading-sm" />
+                  </div>
+                </div>
+              )}
 
-          <form className="chat-form" onSubmit={handleSubmit}>
-            <label className="sr-only" htmlFor={inputId}>
-              Your question
-            </label>
-            <input
-              id={inputId}
-              className="chat-input"
-              value={input}
-              onChange={(event) => setInput(event.target.value)}
-              placeholder="Ask about Redux, React Native, APIs…"
-              disabled={loading}
-              autoComplete="off"
-            />
-            <button
-              type="submit"
-              className="btn btn--primary chat-send"
-              disabled={loading || !input.trim()}
+              {error && (
+                <div role="alert" className="alert alert-error alert-soft text-sm">
+                  <span>{error}</span>
+                </div>
+              )}
+            </div>
+
+            <form
+              className="border-base-300 join border-t p-3"
+              onSubmit={handleSubmit}
             >
-              Send
-            </button>
-          </form>
+              <label className="sr-only" htmlFor={inputId}>
+                Your question
+              </label>
+              <input
+                id={inputId}
+                className="input join-item input-bordered w-full"
+                value={input}
+                onChange={(event) => setInput(event.target.value)}
+                placeholder="Ask about Redux, RN, APIs…"
+                disabled={loading}
+                autoComplete="off"
+              />
+              <button
+                type="submit"
+                className="btn btn-primary join-item"
+                disabled={loading || !input.trim()}
+              >
+                Send
+              </button>
+            </form>
+          </div>
         </section>
       )}
 
       <button
         type="button"
-        className="chat-launcher"
-        onClick={() => setOpen((value) => !value)}
+        className="btn btn-primary btn-lg shadow-xl"
         aria-expanded={open}
         aria-label={open ? "Close chat" : "Open chat"}
+        onClick={() => setOpen((value) => !value)}
       >
         {open ? "Close" : "Ask"}
       </button>

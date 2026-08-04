@@ -16,12 +16,12 @@ describe("buildContentChunks", () => {
     const urls = chunks.map((c) => c.url);
 
     expect(urls).toContain("/about");
-    expect(urls).toContain("/projects/fittrack");
+    expect(urls).toContain("/projects/loginext-dispatcher");
     expect(urls).toContain("/skills#redux-toolkit");
-    expect(urls).toContain("/writing/redux-in-rn");
+    expect(urls).toContain("/writing/rn-state-with-rtk");
     expect(urls.some((u) => u.startsWith("/experience#"))).toBe(true);
 
-    const fittrack = chunks.find((c) => c.url === "/projects/fittrack");
-    expect(fittrack?.text.toLowerCase()).toContain("redux");
+    const loginext = chunks.find((c) => c.url === "/projects/loginext-dispatcher");
+    expect(loginext?.text.toLowerCase()).toContain("redux");
   });
 });

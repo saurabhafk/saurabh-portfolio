@@ -14,10 +14,10 @@ describe("loadPortfolioContent", () => {
     expect(data.about.title).toBe("About Saurabh");
     expect(data.about.body).toContain("React Native");
     expect(data.skills.some((s) => s.id === "redux-toolkit")).toBe(true);
-    expect(data.projects.find((p) => p.slug === "fittrack")?.stack).toContain(
-      "redux-toolkit"
-    );
-    expect(data.experience[0]?.company).toBe("Acme Health");
-    expect(data.writing.find((w) => w.slug === "redux-in-rn")).toBeTruthy();
+    expect(
+      data.projects.find((p) => p.slug === "loginext-dispatcher")?.stack
+    ).toContain("redux-toolkit");
+    expect(data.experience[0]?.company).toBe("Appinventiv Technologies");
+    expect(data.writing.find((w) => w.slug === "rn-state-with-rtk")).toBeTruthy();
   });
 });

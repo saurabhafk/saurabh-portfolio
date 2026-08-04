@@ -87,5 +87,8 @@ export function loadPortfolioContent(contentDir: string): PortfolioContent {
       };
     });
 
+  experience.sort((a, b) => b.start.localeCompare(a.start));
+  projects.sort((a, b) => Number(b.featured) - Number(a.featured));
+
   return { about, skills, projects, experience, writing };
 }

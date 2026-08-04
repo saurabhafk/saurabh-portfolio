@@ -3,19 +3,103 @@
     {
       "id": "react-native",
       "name": "React Native",
-      "projectSlugs": ["fittrack"],
+      "projectSlugs": ["yeether", "loginext-dispatcher", "rainbow-hospitals", "hotel-booking"],
+      "writingSlugs": []
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "projectSlugs": ["yeether", "loginext-dispatcher", "rainbow-hospitals"],
+      "writingSlugs": []
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript",
+      "projectSlugs": ["yeether", "loginext-dispatcher", "rainbow-hospitals", "hotel-booking"],
       "writingSlugs": []
     },
     {
       "id": "redux-toolkit",
       "name": "Redux Toolkit",
-      "projectSlugs": ["fittrack"],
-      "writingSlugs": ["redux-in-rn"]
+      "projectSlugs": ["loginext-dispatcher", "yeether"],
+      "writingSlugs": ["rn-state-with-rtk"]
     },
     {
-      "id": "nodejs",
-      "name": "Node.js",
-      "projectSlugs": ["fittrack"],
+      "id": "redux",
+      "name": "Redux",
+      "projectSlugs": ["loginext-dispatcher", "hotel-booking"],
+      "writingSlugs": []
+    },
+    {
+      "id": "rest-apis",
+      "name": "RESTful APIs",
+      "projectSlugs": ["hotel-booking", "yeether", "loginext-dispatcher"],
+      "writingSlugs": []
+    },
+    {
+      "id": "graphql",
+      "name": "GraphQL",
+      "projectSlugs": [],
+      "writingSlugs": []
+    },
+    {
+      "id": "firebase",
+      "name": "Firebase",
+      "projectSlugs": ["hotel-booking"],
+      "writingSlugs": []
+    },
+    {
+      "id": "push-notifications",
+      "name": "Push Notifications",
+      "projectSlugs": ["yeether"],
+      "writingSlugs": []
+    },
+    {
+      "id": "deep-linking",
+      "name": "Deep Linking",
+      "projectSlugs": ["yeether"],
+      "writingSlugs": []
+    },
+    {
+      "id": "in-app-purchases",
+      "name": "In-App Purchases",
+      "projectSlugs": ["yeether"],
+      "writingSlugs": []
+    },
+    {
+      "id": "google-maps",
+      "name": "Google Maps",
+      "projectSlugs": ["loginext-dispatcher"],
+      "writingSlugs": []
+    },
+    {
+      "id": "agora",
+      "name": "Agora Video",
+      "projectSlugs": ["rainbow-hospitals"],
+      "writingSlugs": []
+    },
+    {
+      "id": "jest",
+      "name": "Jest",
+      "projectSlugs": [],
+      "writingSlugs": []
+    },
+    {
+      "id": "detox",
+      "name": "Detox",
+      "projectSlugs": [],
+      "writingSlugs": []
+    },
+    {
+      "id": "expo",
+      "name": "Expo",
+      "projectSlugs": [],
+      "writingSlugs": []
+    },
+    {
+      "id": "ci-cd",
+      "name": "CI/CD & Git",
+      "projectSlugs": [],
       "writingSlugs": []
     }
   ]

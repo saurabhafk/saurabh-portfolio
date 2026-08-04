@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@portfolio/content-core": "*",
+    "framer-motion": "^12.43.0",
     "next": "15.5.22",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -21,6 +22,7 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "daisyui": "^5.7.16",
     "eslint": "^9",
     "eslint-config-next": "15.5.22",
     "tailwindcss": "^4",

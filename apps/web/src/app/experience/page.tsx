@@ -1,48 +1,52 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { MarkdownBody } from "@/components/content/MarkdownBody";
+import { Reveal } from "@/components/motion/Reveal";
 import { getContent } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Experience",
-  description: "Work history and highlights from Saurabh's React Native career.",
-};
+export const metadata = { title: "Experience" };
 
 export default function ExperiencePage() {
   const { experience } = getContent();
-  const sorted = [...experience].sort((a, b) => b.start.localeCompare(a.start));
 
   return (
-    <main className="page">
-      <h1 className="page__title">Experience</h1>
-      <p className="page__subtitle">
-        Roles where I&apos;ve shipped mobile products and grown into full-stack work.
-      </p>
-      <div>
-        {sorted.map((exp) => (
-          <article key={exp.id} id={exp.id} className="experience-item">
-            <h2 className="experience-item__role">{exp.title}</h2>
-            <p className="experience-item__company">{exp.company}</p>
-            <p className="experience-item__dates">
-              {exp.start} — {exp.end}
-            </p>
-            <p>{exp.summary}</p>
-            {exp.highlights.length > 0 && (
-              <ul className="experience-item__highlights">
-                {exp.highlights.map((highlight) => (
-                  <li key={highlight}>{highlight}</li>
-                ))}
-              </ul>
-            )}
-            <ul className="tag-list">
-              {exp.stack.map((tag) => (
-                <li key={tag} className="tag">
-                  <Link href={`/skills#${tag}`}>{tag}</Link>
-                </li>
-              ))}
-            </ul>
-            {exp.body && <MarkdownBody>{exp.body}</MarkdownBody>}
-          </article>
+    <main className="section-shell max-w-4xl">
+      <Reveal>
+        <p className="text-sm uppercase tracking-[0.2em] text-base-content/50">Career</p>
+        <h1 className="font-display mt-2 text-4xl font-bold md:text-5xl">Experience</h1>
+      </Reveal>
+
+      <div className="mt-12 space-y-6">
+        {experience.map((role, index) => (
+          <Reveal key={role.id} delay={index * 0.05}>
+            <article
+              id={role.id}
+              className="card bg-base-200/80 border-base-300 scroll-mt-28 border"
+            >
+              <div className="card-body">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h2 className="font-display text-2xl font-bold">{role.title}</h2>
+                    <p className="text-primary font-medium">{role.company}</p>
+                  </div>
+                  <span className="badge badge-ghost">
+                    {role.start} — {role.end}
+                  </span>
+                </div>
+                <p className="text-base-content/70">{role.summary}</p>
+                <ul className="mt-2 list-disc space-y-2 pl-5 text-base-content/80">
+                  {role.highlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {role.stack.map((tag) => (
+                    <Link key={tag} href={`/skills#${tag}`} className="badge badge-outline badge-sm">
+                      {tag}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </article>
+          </Reveal>
         ))}
       </div>
     </main>

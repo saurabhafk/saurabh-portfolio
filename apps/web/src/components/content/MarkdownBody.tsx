@@ -1,13 +1,9 @@
 import ReactMarkdown from "react-markdown";
 
-type MarkdownBodyProps = {
-  children: string;
-};
-
-export function MarkdownBody({ children }: MarkdownBodyProps) {
+export function MarkdownBody({ content }: { content: string }) {
   return (
-    <div className="markdown-body">
-      <ReactMarkdown>{children}</ReactMarkdown>
+    <div className="prose-portfolio">
+      <ReactMarkdown>{content}</ReactMarkdown>
     </div>
   );
 }
