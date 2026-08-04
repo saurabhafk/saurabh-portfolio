@@ -1,0 +1,15 @@
+{
+  "name": "saurabh-portfolio",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "npm run test -w @portfolio/content-core && npm run test -w @portfolio/api",
+    "dev:api": "npm run dev -w @portfolio/api",
+    "dev:web": "npm run dev -w @portfolio/web",
+    "build": "npm run build -w @portfolio/content-core && npm run build -w @portfolio/api && npm run build -w @portfolio/web"
+  }
+}
