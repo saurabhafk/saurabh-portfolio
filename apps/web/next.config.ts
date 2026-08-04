@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  transpilePackages: ["@portfolio/content-core"],
+  serverExternalPackages: ["gray-matter"],
 };
 
 export default nextConfig;
