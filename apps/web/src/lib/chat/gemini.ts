@@ -20,7 +20,7 @@ export function createGeminiClient(opts?: {
 }): GeminiClient {
   const embedModel = opts?.embedModel ?? process.env.GEMINI_EMBED_MODEL ?? "gemini-embedding-001";
   const chatModel =
-    opts?.chatModel ?? process.env.GEMINI_CHAT_MODEL ?? "gemini-2.0-flash";
+    opts?.chatModel ?? process.env.GEMINI_CHAT_MODEL ?? "gemini-flash-lite-latest";
 
   return {
     async embed(text: string) {
