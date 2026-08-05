@@ -5,9 +5,14 @@ export type ChatResponse = {
   sources: ChatSource[];
 };
 
+/**
+ * Same-origin `/api/chat` on Vercel (Gemini).
+ * Optional NEXT_PUBLIC_API_URL overrides for local Express+Ollama.
+ */
 export async function sendChatMessage(message: string): Promise<ChatResponse> {
-  const base = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
-  const res = await fetch(`${base}/api/chat`, {
+  const base = (process.env.NEXT_PUBLIC_API_URL ?? "").replace(/\/$/, "");
+  const url = base ? `${base}/api/chat` : "/api/chat";
+  const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message }),

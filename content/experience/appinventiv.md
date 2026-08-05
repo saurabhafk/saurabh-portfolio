@@ -1,24 +1,25 @@
 ---
 company: Appinventiv Technologies
-title: Software Engineer - React Native
+title: Software Engineer – React Native
 start: 2023-07
 end: present
-summary: Led development and optimization of high-performance cross-platform mobile apps with React Native in Noida, UP.
+summary: I lead development of high-performance cross-platform React Native apps in Noida — state architecture, secure auth, monetization, and Agile delivery.
 highlights:
-  - Architected state management with Redux and Context API for reliability and maintainability
-  - Built dynamic multi-page forms and reusable UI components to accelerate feature delivery
-  - Integrated advanced graph libraries for interactive data visualization
-  - Improved performance via profiling, refactoring, and RN optimization practices
-  - Secured auth with device keychain token storage plus Google/Apple sign-in
-  - Shipped in-app purchases, Google Mobile Ads, push/in-app notifications, and Branch.io deep linking
-  - Collaborated across design and backend in full Agile lifecycle (planning, reviews, stand-ups)
+  - Led development of high-performance cross-platform apps in React Native, architecting state management with Redux and Context API for reliability at scale
+  - Built dynamic multi-page forms and reusable UI components, cutting new-feature development time across the team
+  - Implemented interactive data visualizations using advanced graph libraries for pictorial, decision-ready analytics
+  - Secured authentication via device keychain token storage and Google/Apple auth; shipped in-app purchases, Google Mobile Ads, push/in-app notifications, and Branch.io deep linking
+  - Drove Agile ceremonies (sprint planning, code reviews, stand-ups) across the full development lifecycle
 stack:
   - react-native
   - typescript
   - javascript
   - redux
   - redux-toolkit
+  - context-api
   - deep-linking
   - push-notifications
   - in-app-purchases
+  - biometric-auth
+  - keychain
 ---

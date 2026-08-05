@@ -20,7 +20,7 @@ export default function SkillsPage() {
           Skills
         </h1>
         <p className="mt-3 max-w-2xl text-base-content/70">
-          Ask the chatbot about any skill — answers deep-link here and into related
+          Ask me about any skill — I&apos;ll deep-link you here and into related
           work.
         </p>
       </Reveal>

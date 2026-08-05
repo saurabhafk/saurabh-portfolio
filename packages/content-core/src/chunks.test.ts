@@ -16,10 +16,19 @@ describe("buildContentChunks", () => {
     const urls = chunks.map((c) => c.url);
 
     expect(urls).toContain("/about");
+    expect(urls).toContain("/projects/ponteo");
     expect(urls).toContain("/projects/loginext-dispatcher");
     expect(urls).toContain("/skills#redux-toolkit");
     expect(urls).toContain("/writing/rn-state-with-rtk");
+    expect(urls).toContain("/about#anthropic-introduction-to-subagents");
     expect(urls.some((u) => u.startsWith("/experience#"))).toBe(true);
+
+    const ponteo = chunks.find((c) => c.url === "/projects/ponteo");
+    expect(ponteo?.text.toLowerCase()).toContain("stripe");
+    expect(ponteo?.text.toLowerCase()).toContain("intercom");
+
+    const intercom = chunks.find((c) => c.url === "/skills#intercom");
+    expect(intercom?.text.toLowerCase()).toContain("ponteo");
 
     const loginext = chunks.find((c) => c.url === "/projects/loginext-dispatcher");
     expect(loginext?.text.toLowerCase()).toContain("redux");

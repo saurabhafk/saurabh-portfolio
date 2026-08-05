@@ -27,10 +27,12 @@ export function createOllamaClient(opts: {
     },
 
     async embed(text: string) {
+      // nomic-embed-text rejects prompts above ~2k tokens; keep a safe char cap
+      const prompt = text.length > 6000 ? text.slice(0, 6000) : text;
       const res = await fetch(`${baseUrl}/api/embeddings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ model: embedModel, prompt: text }),
+        body: JSON.stringify({ model: embedModel, prompt }),
       });
       if (!res.ok) throw new Error(`Ollama embed failed: ${res.status}`);
       const data = (await res.json()) as { embedding: number[] };

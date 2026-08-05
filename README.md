@@ -1,13 +1,15 @@
 # Saurabh Portfolio
 
-Personal portfolio with a floating RAG chatbot. Visitors can ask questions like “Has Saurabh worked with Redux Toolkit?” and get answers with deep-links into projects, skills, experience, and writing.
+Personal portfolio (Next.js) with a floating RAG chatbot backed by Express + Ollama. Answers stay grounded in `content/`; undocumented details fall back to contact info.
 
 ## Stack
 
-- **Web:** Next.js (App Router) on Vercel — `apps/web`
-- **API:** Express + Ollama RAG on a VPS — `apps/api`
-- **Shared content:** markdown/JSON — `content/`
-- **Shared package:** `@portfolio/content-core` — `packages/content-core`
+| Piece | Path | Role |
+|-------|------|------|
+| Web | `apps/web` | Next.js UI |
+| API | `apps/api` | Chat / health / reindex |
+| Shared lib | `packages/content-core` | Load content + build RAG chunks |
+| Content | `content/` | Projects, skills, experience, writing |
 
 ## Requirements
 
@@ -20,17 +22,28 @@ Personal portfolio with a floating RAG chatbot. Visitors can ask questions like 
 npm install
 npm run build -w @portfolio/content-core
 
-# API (needs Ollama running)
 cp apps/api/.env.example apps/api/.env
-npm run dev:api
-
-# Web
 cp apps/web/.env.example apps/web/.env.local
+
+# Terminal 1 — API (Ollama must be running)
+npm run start -w @portfolio/api
+
+# Terminal 2 — Web
 npm run dev:web
 ```
 
 - Site: http://localhost:3000  
 - Health: http://localhost:4000/api/health  
+
+## Learn the system
+
+**Read this first:** [docs/guide/HOW_IT_WORKS.md](docs/guide/HOW_IT_WORKS.md) — folder map, Next.js, Express, embeddings, RAG, coverage gate, and what to edit for what change.
+
+| Doc | Purpose |
+|-----|---------|
+| [docs/guide/](docs/guide/) | Beginner guides |
+| [docs/deploy.md](docs/deploy.md) | Hosting later (Vercel + VPS) |
+| [docs/superpowers/specs/](docs/superpowers/specs/) | MVP design history |
 
 ## Scripts
 
@@ -38,20 +51,16 @@ npm run dev:web
 |--------|---------|
 | `npm run dev:web` | Next.js dev server |
 | `npm run dev:api` | Express API with watch |
-| `npm test` | content-core + api Vitest suites |
+| `npm run start -w @portfolio/api` | Run compiled API |
+| `npm test` | content-core + api tests |
 | `npm run build` | Build content-core, api, and web |
-
-## Docs
-
-- Design: `docs/superpowers/specs/2026-08-04-saurabh-portfolio-design.md`
-- Plan: `docs/superpowers/plans/2026-08-04-saurabh-portfolio.md`
-- Deploy: `docs/deploy.md`
 
 ## Layout
 
 ```
-apps/web          Next.js portfolio + ChatWidget
-apps/api          Express RAG API
-packages/content-core   Shared loader + chunk builder
-content/          Source of truth for site + chatbot
+apps/web                 Next.js portfolio + ChatWidget
+apps/api                 Express RAG API
+packages/content-core    Shared loader + chunk builder
+content/                 Source of truth for site + chatbot
+docs/guide/              How everything works
 ```

@@ -1,0 +1,76 @@
+{
+  "certifications": [
+    {
+      "id": "anthropic-introduction-to-subagents",
+      "name": "Introduction to subagents",
+      "issuer": "Anthropic Education",
+      "issuedAt": "2026-05-21",
+      "credentialId": "e7btbqzzhket",
+      "credentialUrl": "https://verify.skilljar.com/c/e7btbqzzhket",
+      "skills": ["claude-code", "ai-assisted"]
+    },
+    {
+      "id": "anthropic-introduction-to-agent-skills",
+      "name": "Introduction to agent skills",
+      "issuer": "Anthropic Education",
+      "issuedAt": "2026-05-21",
+      "credentialId": "bux89voyspem",
+      "credentialUrl": "https://verify.skilljar.com/c/bux89voyspem",
+      "skills": ["claude-code", "ai-assisted"]
+    },
+    {
+      "id": "anthropic-ai-capabilities-and-limitations",
+      "name": "AI Capabilities and Limitations",
+      "issuer": "Anthropic Education",
+      "issuedAt": "2026-05-21",
+      "credentialId": "ngnccmkq3de3",
+      "credentialUrl": "https://verify.skilljar.com/c/ngnccmkq3de3",
+      "skills": ["ai-assisted"]
+    },
+    {
+      "id": "anthropic-introduction-to-claude-cowork",
+      "name": "Introduction to Claude Cowork",
+      "issuer": "Anthropic Education",
+      "issuedAt": "2026-05-07",
+      "credentialId": "cc38yuixioay",
+      "credentialUrl": "https://verify.skilljar.com/c/cc38yuixioay",
+      "skills": ["claude-code", "ai-assisted"]
+    },
+    {
+      "id": "anthropic-claude-code-in-action",
+      "name": "Claude Code in Action",
+      "issuer": "Anthropic Education",
+      "issuedAt": "2026-05-07",
+      "credentialId": "7598wtpv392g",
+      "credentialUrl": "https://verify.skilljar.com/c/7598wtpv392g",
+      "skills": ["claude-code", "ai-assisted"]
+    },
+    {
+      "id": "anthropic-claude-code-101",
+      "name": "Claude Code 101",
+      "issuer": "Anthropic Education",
+      "issuedAt": "2026-05-07",
+      "credentialId": "zi5cfoabchrq",
+      "credentialUrl": "https://verify.skilljar.com/c/zi5cfoabchrq",
+      "skills": ["claude-code", "ai-assisted"]
+    },
+    {
+      "id": "anthropic-claude-101",
+      "name": "Claude 101",
+      "issuer": "Anthropic Education",
+      "issuedAt": "2026-05-07",
+      "credentialId": "388mizo49j3g",
+      "credentialUrl": "https://verify.skilljar.com/c/388mizo49j3g",
+      "skills": ["ai-assisted", "claude-code"]
+    },
+    {
+      "id": "anthropic-ai-fluency-framework-foundations",
+      "name": "AI Fluency: Framework & Foundations",
+      "issuer": "Anthropic Education",
+      "issuedAt": "2026-05-07",
+      "credentialId": "vizgrxyufphf",
+      "credentialUrl": "https://verify.skilljar.com/c/vizgrxyufphf",
+      "skills": ["ai-assisted"]
+    }
+  ]
+}

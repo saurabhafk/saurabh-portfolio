@@ -9,7 +9,7 @@ export function OpenChatButton({ className = "" }: { className?: string }) {
         window.dispatchEvent(new CustomEvent("portfolio:open-chat"));
       }}
     >
-      Ask the portfolio
+      Ask me
     </button>
   );
 }

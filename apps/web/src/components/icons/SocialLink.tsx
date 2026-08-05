@@ -10,9 +10,21 @@ type SocialLinkProps = {
 };
 
 const config = {
-  linkedin: { Icon: FaLinkedin, defaultLabel: "LinkedIn" },
-  github: { Icon: FaGithub, defaultLabel: "GitHub" },
-  email: { Icon: MdOutlineEmail, defaultLabel: "Email" },
+  linkedin: {
+    Icon: FaLinkedin,
+    defaultLabel: "LinkedIn",
+    color: "#0A66C2",
+  },
+  github: {
+    Icon: FaGithub,
+    defaultLabel: "GitHub",
+    color: "#181717",
+  },
+  email: {
+    Icon: MdOutlineEmail,
+    defaultLabel: "Email",
+    color: "#EA4335",
+  },
 } as const;
 
 export function SocialLink({
@@ -22,7 +34,7 @@ export function SocialLink({
   className = "btn gap-2",
   iconOnly = false,
 }: SocialLinkProps) {
-  const { Icon, defaultLabel } = config[network];
+  const { Icon, defaultLabel, color } = config[network];
   const text = label ?? defaultLabel;
   const external = network !== "email";
 
@@ -35,7 +47,11 @@ export function SocialLink({
         : {})}
       aria-label={text}
     >
-      <Icon className="h-4 w-4" aria-hidden />
+      <Icon
+        className={`h-4 w-4 shrink-0${network === "github" ? " tech-icon-github" : ""}`}
+        aria-hidden
+        style={{ color }}
+      />
       {!iconOnly && <span>{text}</span>}
     </a>
   );

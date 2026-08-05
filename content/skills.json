@@ -3,61 +3,79 @@
     {
       "id": "react-native",
       "name": "React Native",
-      "projectSlugs": ["yeether", "loginext-dispatcher", "rainbow-hospitals", "hotel-booking"],
-      "writingSlugs": []
+      "projectSlugs": ["ponteo", "yeether", "loginext-dispatcher", "rainbow-hospitals", "hotel-booking"],
+      "writingSlugs": ["rn-state-with-rtk", "ml-kit-background-removal"]
     },
     {
       "id": "typescript",
       "name": "TypeScript",
-      "projectSlugs": ["yeether", "loginext-dispatcher", "rainbow-hospitals"],
+      "projectSlugs": ["ponteo", "yeether", "loginext-dispatcher", "rainbow-hospitals"],
       "writingSlugs": []
     },
     {
       "id": "javascript",
       "name": "JavaScript",
-      "projectSlugs": ["yeether", "loginext-dispatcher", "rainbow-hospitals", "hotel-booking"],
+      "projectSlugs": ["ponteo", "yeether", "loginext-dispatcher", "rainbow-hospitals", "hotel-booking"],
+      "writingSlugs": []
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "projectSlugs": [],
       "writingSlugs": []
     },
     {
       "id": "redux-toolkit",
       "name": "Redux Toolkit",
-      "projectSlugs": ["loginext-dispatcher", "yeether"],
+      "projectSlugs": ["loginext-dispatcher", "yeether", "ponteo"],
       "writingSlugs": ["rn-state-with-rtk"]
     },
     {
       "id": "redux",
       "name": "Redux",
-      "projectSlugs": ["loginext-dispatcher", "hotel-booking"],
+      "projectSlugs": ["loginext-dispatcher", "hotel-booking", "ponteo"],
+      "writingSlugs": ["rn-state-with-rtk"]
+    },
+    {
+      "id": "context-api",
+      "name": "Context API",
+      "projectSlugs": ["ponteo", "yeether"],
       "writingSlugs": []
     },
     {
       "id": "rest-apis",
       "name": "RESTful APIs",
-      "projectSlugs": ["hotel-booking", "yeether", "loginext-dispatcher"],
-      "writingSlugs": []
-    },
-    {
-      "id": "graphql",
-      "name": "GraphQL",
-      "projectSlugs": [],
+      "projectSlugs": ["hotel-booking", "yeether", "loginext-dispatcher", "ponteo"],
       "writingSlugs": []
     },
     {
       "id": "firebase",
       "name": "Firebase",
-      "projectSlugs": ["hotel-booking"],
+      "projectSlugs": ["ponteo", "hotel-booking"],
+      "writingSlugs": []
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "projectSlugs": ["ponteo"],
+      "writingSlugs": []
+    },
+    {
+      "id": "socket-io",
+      "name": "Socket.io",
+      "projectSlugs": ["ponteo"],
       "writingSlugs": []
     },
     {
       "id": "push-notifications",
       "name": "Push Notifications",
-      "projectSlugs": ["yeether"],
+      "projectSlugs": ["ponteo", "yeether"],
       "writingSlugs": []
     },
     {
       "id": "deep-linking",
-      "name": "Deep Linking",
-      "projectSlugs": ["yeether"],
+      "name": "Deep Linking (Branch.io)",
+      "projectSlugs": ["yeether", "ponteo"],
       "writingSlugs": []
     },
     {
@@ -67,15 +85,75 @@
       "writingSlugs": []
     },
     {
-      "id": "google-maps",
-      "name": "Google Maps",
-      "projectSlugs": ["loginext-dispatcher"],
+      "id": "biometric-auth",
+      "name": "Biometric Auth",
+      "projectSlugs": ["ponteo"],
       "writingSlugs": []
     },
     {
+      "id": "keychain",
+      "name": "RN Keychain / Keystore",
+      "projectSlugs": ["ponteo", "yeether"],
+      "writingSlugs": []
+    },
+    {
+      "id": "google-maps",
+      "name": "Google Maps",
+      "projectSlugs": ["ponteo", "loginext-dispatcher"],
+      "writingSlugs": []
+    },
+    {
+      "id": "apple-maps",
+      "name": "Apple Maps",
+      "projectSlugs": ["ponteo"],
+      "writingSlugs": []
+    },
+    {
+      "id": "ml-kit",
+      "name": "ML Kit",
+      "projectSlugs": ["ponteo"],
+      "writingSlugs": ["ml-kit-background-removal"]
+    },
+    {
       "id": "agora",
-      "name": "Agora Video",
-      "projectSlugs": ["rainbow-hospitals"],
+      "name": "Agora",
+      "projectSlugs": ["ponteo", "rainbow-hospitals"],
+      "writingSlugs": []
+    },
+    {
+      "id": "intercom",
+      "name": "Intercom",
+      "projectSlugs": ["ponteo"],
+      "writingSlugs": []
+    },
+    {
+      "id": "ai-assisted",
+      "name": "AI-Assisted Dev",
+      "projectSlugs": [],
+      "writingSlugs": []
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "projectSlugs": [],
+      "writingSlugs": []
+    },
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "projectSlugs": [],
+      "writingSlugs": []
+    },
+    {
+      "id": "react",
+      "name": "React",
+      "projectSlugs": [],
+      "writingSlugs": []
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "projectSlugs": [],
       "writingSlugs": []
     },
     {

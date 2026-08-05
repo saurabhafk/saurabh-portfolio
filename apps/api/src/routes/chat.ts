@@ -6,6 +6,8 @@ import type { VectorStore } from "../lib/vector-store.js";
 import {
   UNKNOWN_REPLY,
   buildChatMessages,
+  buildCoverageGateMessages,
+  contextCoversQuestion,
   filterHits,
 } from "../services/rag.js";
 
@@ -50,6 +52,14 @@ export function chatRouter(opts: {
       );
 
       if (hits.length === 0) {
+        res.json({ reply: UNKNOWN_REPLY, sources: [] });
+        return;
+      }
+
+      const gate = await opts.ollama.chat(
+        buildCoverageGateMessages(parsed.data.message, hits)
+      );
+      if (!contextCoversQuestion(gate)) {
         res.json({ reply: UNKNOWN_REPLY, sources: [] });
         return;
       }

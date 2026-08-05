@@ -1,81 +1,58 @@
-# Deploy guide
+# Deploy guide (free path)
 
-## Overview
+## Production (recommended): Vercel + Gemini
 
 | Piece | Host |
 |-------|------|
-| `apps/web` (Next.js) | Vercel |
-| `apps/api` (Express) + Ollama | VPS |
-| `content/` | Same git repo; copied with the API deploy |
+| Site + `/api/chat` | **Vercel** (Hobby / free) |
+| Embeddings + LLM | **Google Gemini** API (free tier) |
+| Content | Repo `content/` (bundled at build) |
 
-## Prerequisites
+No VPS and no public Ollama required.
 
-- Node.js 22+ (see `.nvmrc`)
-- Ollama on the VPS with models:
-  ```bash
-  ollama pull nomic-embed-text
-  ollama pull llama3.2
-  ```
+### 1. GitHub
 
-## VPS — API + Ollama
+Push the `dev` branch to GitHub.
 
-1. Clone the repo and install:
-   ```bash
-   git clone <repo-url> portfolio && cd portfolio
-   npm install
-   npm run build -w @portfolio/content-core
-   npm run build -w @portfolio/api
-   ```
+### 2. Vercel project
 
-2. Create `apps/api/.env` from `.env.example`:
-   ```bash
-   PORT=4000
-   CONTENT_DIR=/absolute/path/to/portfolio/content
-   CORS_ORIGINS=https://your-frontend.vercel.app
-   REINDEX_SECRET=<long-random-secret>
-   OLLAMA_URL=http://127.0.0.1:11434
-   EMBED_MODEL=nomic-embed-text
-   CHAT_MODEL=llama3.2
-   INDEX_PATH=/absolute/path/to/portfolio/apps/api/data/index.json
-   RELEVANCE_THRESHOLD=0.35
-   ```
+1. Import the repo in [Vercel](https://vercel.com).
+2. **Root Directory:** `apps/web`
+3. Env vars (Production + Preview):
 
-3. Keep Ollama bound to localhost only. Put the API behind nginx/Caddy with HTTPS.
+| Name | Value |
+|------|--------|
+| `GEMINI_API_KEY` | from [Google AI Studio](https://aistudio.google.com/apikey) |
+| `GEMINI_EMBED_MODEL` | `gemini-embedding-001` |
+| `GEMINI_CHAT_MODEL` | `gemini-2.0-flash` |
+| `RELEVANCE_THRESHOLD` | `0.35` (optional) |
 
-4. Run with systemd or PM2:
-   ```bash
-   npm run start -w @portfolio/api
-   ```
-   On startup the API reindexes content when Ollama is reachable.
+Leave `NEXT_PUBLIC_API_URL` **unset** so the chat widget calls same-origin `/api/chat`.
 
-5. After content updates on the VPS:
-   ```bash
-   curl -X POST https://api.yourdomain.com/api/reindex \
-     -H "x-reindex-secret: $REINDEX_SECRET"
-   ```
+4. Deploy. Build runs `content-core` + chat index + `next build` (see `apps/web/vercel.json`).
 
-## Vercel — frontend
-
-1. Import the monorepo; set the app root / project to `apps/web` (or configure root build commands).
-2. Environment:
-   ```
-   NEXT_PUBLIC_API_URL=https://api.yourdomain.com
-   ```
-3. Build command (from repo root if needed):
-   ```bash
-   npm install && npm run build -w @portfolio/content-core && npm run build -w @portfolio/web
-   ```
-4. Ensure the Vercel build can read `../../content` relative to `apps/web` (monorepo checkout includes `content/`).
-
-## Local development
+### 3. Local with Gemini
 
 ```bash
-# terminal A — Ollama must be running locally
-npm run dev -w @portfolio/api
-
-# terminal B
 cp apps/web/.env.example apps/web/.env.local
-npm run dev -w @portfolio/web
+# set GEMINI_API_KEY
+npm run build -w @portfolio/content-core
+npm run build:index -w @portfolio/web   # optional; also runs on next build
+npm run dev:web
 ```
 
-Open http://localhost:3000 and use the Ask widget.
+### 4. Local with Express + Ollama (optional)
+
+```bash
+# apps/web/.env.local
+NEXT_PUBLIC_API_URL=http://localhost:4000
+
+npm run start -w @portfolio/api
+npm run dev:web
+```
+
+---
+
+## Alternate (paid): Vercel + VPS + Ollama
+
+See older notes: Express API on a VPS with Ollama, `NEXT_PUBLIC_API_URL=https://api.yourdomain.com`. Not required for the free MVP.

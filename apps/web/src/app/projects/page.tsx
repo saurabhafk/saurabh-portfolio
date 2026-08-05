@@ -20,8 +20,8 @@ export default function ProjectsPage() {
           Portfolio
         </h1>
         <p className="mt-3 max-w-2xl text-base-content/70">
-          Case studies from production React Native apps — healthcare, logistics,
-          consumer, and booking.
+          Production React Native work I&apos;ve shipped — dental marketplace,
+          healthcare, logistics, consumer, and booking.
         </p>
       </Reveal>
 
@@ -30,9 +30,9 @@ export default function ProjectsPage() {
           <Reveal key={project.slug} delay={index * 0.05}>
             <Link
               href={`/projects/${project.slug}`}
-              className="vscode-panel rounded-box block overflow-hidden transition hover:-translate-y-0.5"
+              className="vscode-panel rounded-box block transition hover:-translate-y-0.5"
             >
-              <div className="border-base-300 flex items-center justify-between border-b px-4 py-2 font-mono text-xs">
+              <div className="border-base-300 flex items-center justify-between rounded-t-[inherit] border-b px-4 py-2 font-mono text-xs">
                 <span className="code-token-string">
                   &quot;{project.slug}.tsx&quot;
                 </span>
@@ -41,9 +41,9 @@ export default function ProjectsPage() {
                 )}
               </div>
               <div className="p-5">
-                <div className="flex flex-wrap gap-2">
-                  {project.stack.slice(0, 4).map((tag) => (
-                    <TechBadge key={tag} name={tag} />
+                <div className="flex flex-wrap items-center gap-2.5">
+                  {project.stack.map((tag) => (
+                    <TechBadge key={tag} name={tag} iconOnly size="md" />
                   ))}
                 </div>
                 <h2 className="font-display mt-3 text-2xl font-semibold">

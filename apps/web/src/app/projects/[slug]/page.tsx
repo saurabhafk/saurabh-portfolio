@@ -53,9 +53,9 @@ export default async function ProjectDetailPage({ params }: Props) {
           </div>
         </div>
       </Reveal>
-      <Reveal className="prose-portfolio mt-8" delay={0.08}>
+      <div className="prose-portfolio mt-8">
         <MarkdownBody content={project.body} />
-      </Reveal>
+      </div>
     </main>
   );
 }

@@ -2,17 +2,26 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { IconType } from "react-icons";
 import type { ReactNode } from "react";
+import {
+  VscAccount,
+  VscBriefcase,
+  VscCode,
+  VscFiles,
+  VscHome,
+  VscBook,
+} from "react-icons/vsc";
 import { SocialLink } from "@/components/icons/SocialLink";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
-const nav = [
-  { href: "/", label: "Home", icon: "⌂" },
-  { href: "/projects", label: "Work", icon: "◫" },
-  { href: "/experience", label: "Exp", icon: "⧗" },
-  { href: "/skills", label: "Skills", icon: "{}" },
-  { href: "/writing", label: "Notes", icon: "✎" },
-  { href: "/about", label: "About", icon: "◎" },
+const nav: { href: string; label: string; Icon: IconType }[] = [
+  { href: "/", label: "Home", Icon: VscHome },
+  { href: "/projects", label: "Work", Icon: VscFiles },
+  { href: "/experience", label: "Exp", Icon: VscBriefcase },
+  { href: "/skills", label: "Skills", Icon: VscCode },
+  { href: "/writing", label: "Notes", Icon: VscBook },
+  { href: "/about", label: "About", Icon: VscAccount },
 ];
 
 function tabLabel(pathname: string) {
@@ -29,8 +38,9 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <div className="bg-base-200 flex min-h-screen flex-col">
-      <header className="vscode-titlebar text-base-content/80 flex items-center justify-between px-3 text-xs">
+    <div className="bg-base-200 relative h-dvh overflow-hidden">
+      {/* Fixed title bar */}
+      <header className="vscode-titlebar text-base-content/80 fixed inset-x-0 top-0 z-50 flex items-center justify-between px-3 text-xs">
         <div className="flex items-center gap-3">
           <span className="font-mono text-base-content/50">● ● ●</span>
           <span className="font-mono hidden sm:inline">
@@ -54,11 +64,49 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <div className="flex min-h-0 flex-1">
-        <nav
-          className="vscode-activity text-base-content/70 hidden flex-col items-center gap-1 py-2 sm:flex"
-          aria-label="Primary"
-        >
+      {/* Fixed activity bar (desktop) — icon-only, VS Code style */}
+      <nav
+        className="vscode-activity text-base-content/55 fixed top-9 bottom-6 left-0 z-40 hidden flex-col items-center py-1 sm:flex"
+        aria-label="Primary"
+      >
+        {nav.map((item) => {
+          const active =
+            item.href === "/"
+              ? pathname === "/"
+              : pathname.startsWith(item.href);
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              title={item.label}
+              aria-label={item.label}
+              className={`flex h-12 w-full items-center justify-center transition ${
+                active
+                  ? "text-base-content border-primary border-l-2"
+                  : "hover:text-base-content border-l-2 border-transparent"
+              }`}
+            >
+              <item.Icon className="h-[22px] w-[22px]" aria-hidden />
+            </Link>
+          );
+        })}
+      </nav>
+
+      {/* Main column — only this scrolls */}
+      <div className="flex h-full flex-col pt-9 pb-6 sm:pl-12">
+        <div className="bg-base-200 shrink-0 overflow-x-auto text-xs">
+          <div className="flex">
+            <div className="vscode-tab-active vscode-tab font-mono text-base-content flex items-center gap-2 px-4 py-2 whitespace-nowrap">
+              <span className="code-token-keyword">tsx</span>
+              {tabLabel(pathname)}
+            </div>
+            <div className="vscode-tab text-base-content/50 font-mono flex items-center px-4 py-2 whitespace-nowrap">
+              README.md
+            </div>
+          </div>
+        </div>
+
+        <div className="border-base-300 bg-base-200 text-base-content/60 flex shrink-0 gap-4 overflow-x-auto border-b px-3 py-1.5 text-xs sm:hidden">
           {nav.map((item) => {
             const active =
               item.href === "/"
@@ -68,55 +116,24 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Link
                 key={item.href}
                 href={item.href}
-                title={item.label}
-                className={`flex h-11 w-11 flex-col items-center justify-center rounded-sm text-[10px] transition ${
-                  active
-                    ? "text-base-content border-l-2 border-base-content bg-base-100/40"
-                    : "hover:text-base-content border-l-2 border-transparent"
+                className={`inline-flex items-center gap-1 ${
+                  active ? "text-base-content font-medium" : ""
                 }`}
               >
-                <span className="font-mono text-sm leading-none">{item.icon}</span>
-                <span className="mt-1">{item.label}</span>
+                <item.Icon className="h-3.5 w-3.5" aria-hidden />
+                {item.label}
               </Link>
             );
           })}
-        </nav>
+        </div>
 
-        <div className="flex min-w-0 flex-1 flex-col">
-          <div className="bg-base-200 flex overflow-x-auto text-xs">
-            <div className="vscode-tab-active vscode-tab font-mono text-base-content flex items-center gap-2 px-4 py-2 whitespace-nowrap">
-              <span className="code-token-keyword">tsx</span>
-              {tabLabel(pathname)}
-            </div>
-            <div className="vscode-tab text-base-content/50 font-mono flex items-center px-4 py-2 whitespace-nowrap">
-              README.md
-            </div>
-          </div>
-
-          <div className="border-base-300 bg-base-200 text-base-content/60 flex gap-4 overflow-x-auto border-b px-3 py-1 text-xs sm:hidden">
-            {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={
-                  pathname === item.href ||
-                  (item.href !== "/" && pathname.startsWith(item.href))
-                    ? "text-base-content font-medium"
-                    : ""
-                }
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-
-          <div className="vscode-editor min-h-0 flex-1 overflow-y-auto">
-            {children}
-          </div>
+        <div className="vscode-editor min-h-0 flex-1 overflow-y-auto">
+          {children}
         </div>
       </div>
 
-      <footer className="vscode-statusbar flex items-center justify-between gap-3 px-3 font-mono">
+      {/* Fixed status bar */}
+      <footer className="vscode-statusbar fixed inset-x-0 bottom-0 z-50 flex items-center justify-between gap-3 px-3 font-mono">
         <div className="flex items-center gap-3 truncate">
           <span>⎇ main*</span>
           <span className="hidden sm:inline">0 ⚠ 0 ✖</span>

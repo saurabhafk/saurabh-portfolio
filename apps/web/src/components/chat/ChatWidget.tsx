@@ -12,7 +12,7 @@ type ChatMessage = {
   sources?: ChatSource[];
 };
 
-const STARTER = "Has Saurabh worked with Redux Toolkit?";
+const STARTER = "Have you worked with Redux Toolkit?";
 
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
@@ -65,13 +65,13 @@ export function ChatWidget() {
   }
 
   return (
-    <div className="fixed right-4 bottom-8 z-80 flex flex-col items-end gap-2 sm:bottom-10">
+    <div className="fixed right-4 bottom-10 z-80 flex flex-col items-end gap-2">
       {open && (
         <section className="vscode-panel flex h-[min(32rem,calc(100vh-8rem))] w-[min(24rem,calc(100vw-2rem))] flex-col overflow-hidden shadow-2xl">
           <header className="border-base-300 bg-base-300/50 flex items-center justify-between border-b px-3 py-2">
             <div className="font-mono text-xs">
               <span className="code-token-comment">TERMINAL</span>
-              <span className="text-base-content/50"> · ask-portfolio</span>
+              <span className="text-base-content/50"> · ask me</span>
             </div>
             <button
               type="button"

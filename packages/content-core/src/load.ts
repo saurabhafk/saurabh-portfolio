@@ -3,6 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import type {
   About,
+  Certification,
   Experience,
   PortfolioContent,
   Project,
@@ -31,6 +32,17 @@ export function loadPortfolioContent(contentDir: string): PortfolioContent {
     writingSlugs: s.writingSlugs ?? [],
   }));
 
+  const certificationsPath = path.join(contentDir, "certifications.json");
+  const certificationsJson = fs.existsSync(certificationsPath)
+    ? (JSON.parse(fs.readFileSync(certificationsPath, "utf8")) as {
+        certifications: Certification[];
+      })
+    : { certifications: [] };
+  const certifications = (certificationsJson.certifications ?? []).map((c) => ({
+    ...c,
+    skills: c.skills ?? [],
+  }));
+
   const projectsDir = path.join(contentDir, "projects");
   const projects: Project[] = fs
     .readdirSync(projectsDir)
@@ -46,6 +58,7 @@ export function loadPortfolioContent(contentDir: string): PortfolioContent {
         role: String(d.role ?? ""),
         links: (d.links as Project["links"]) ?? {},
         featured: Boolean(d.featured),
+        order: Number(d.order ?? 99),
         body: parsed.content.trim(),
       };
     });
@@ -88,7 +101,10 @@ export function loadPortfolioContent(contentDir: string): PortfolioContent {
     });
 
   experience.sort((a, b) => b.start.localeCompare(a.start));
-  projects.sort((a, b) => Number(b.featured) - Number(a.featured));
+  projects.sort(
+    (a, b) => Number(b.featured) - Number(a.featured) || a.order - b.order
+  );
+  certifications.sort((a, b) => b.issuedAt.localeCompare(a.issuedAt));
 
-  return { about, skills, projects, experience, writing };
+  return { about, skills, projects, experience, writing, certifications };
 }

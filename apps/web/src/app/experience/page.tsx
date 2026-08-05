@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { TechBadge } from "@/components/icons/TechBadge";
 import { Reveal } from "@/components/motion/Reveal";
 import { getContent } from "@/lib/content";
@@ -12,7 +11,7 @@ export default function ExperiencePage() {
     <main className="section-shell max-w-3xl">
       <Reveal>
         <p className="font-mono text-xs text-base-content/50">
-          <span className="code-token-comment">{"// git log --author=Saurabh"}</span>
+          <span className="code-token-comment">{"// git log --author=me"}</span>
         </p>
         <h1 className="font-display mt-2 text-4xl font-bold md:text-5xl">
           Experience

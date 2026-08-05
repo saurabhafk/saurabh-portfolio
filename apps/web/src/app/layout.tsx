@@ -22,7 +22,17 @@ export const metadata: Metadata = {
     template: "%s · Saurabh",
   },
   description:
-    "React Native developer with 3+ years building Android & iOS apps. Redux Toolkit, APIs, deep linking, notifications, and in-app purchases.",
+    "React Native engineer & freelance content writer with 4 years shipping Android & iOS apps. Redux Toolkit, on-device ML, payments, and Anthropic / Claude certifications.",
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
+  },
+  openGraph: {
+    title: "Saurabh Srivastava — React Native Engineer",
+    description:
+      "React Native engineer & freelance content writer with 4 years shipping Android & iOS apps.",
+    images: [{ url: "/images/avatar.jpg", width: 512, height: 512 }],
+  },
 };
 
 const themeInitScript = `

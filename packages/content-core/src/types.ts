@@ -13,6 +13,7 @@ export type Project = {
   role: string;
   links: { repo?: string | null; demo?: string | null };
   featured: boolean;
+  order: number;
   body: string;
 };
 
@@ -37,6 +38,16 @@ export type Writing = {
   body: string;
 };
 
+export type Certification = {
+  id: string;
+  name: string;
+  issuer: string;
+  issuedAt: string;
+  credentialId?: string;
+  credentialUrl?: string;
+  skills: string[];
+};
+
 export type About = {
   title: string;
   body: string;
@@ -48,12 +59,19 @@ export type PortfolioContent = {
   projects: Project[];
   experience: Experience[];
   writing: Writing[];
+  certifications: Certification[];
 };
 
 export type ContentChunk = {
   id: string;
   title: string;
   url: string;
-  sourceType: "about" | "skill" | "project" | "experience" | "writing";
+  sourceType:
+    | "about"
+    | "skill"
+    | "project"
+    | "experience"
+    | "writing"
+    | "certification";
   text: string;
 };
