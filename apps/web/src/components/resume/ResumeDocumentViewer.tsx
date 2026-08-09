@@ -22,7 +22,7 @@ export function ResumeDocumentViewer() {
                 className="btn btn-primary btn-sm gap-2 font-sans text-xs px-4"
               >
                 <VscDownload className="h-4 w-4" />
-                Download Exact PDF
+                Download PDF
               </a>
               <a
                 href="/Saurabh_Srivastava_Resume.pdf"

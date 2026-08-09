@@ -101,10 +101,10 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="flex">
             <Link
               href={pathname.startsWith("/resume") ? "/" : pathname}
-              className={`vscode-tab font-mono flex items-center gap-2 px-4 py-2 whitespace-nowrap transition ${
+              className={`vscode-tab font-mono flex items-center gap-2 px-4 py-2.5 whitespace-nowrap cursor-pointer select-none transition ${
                 !pathname.startsWith("/resume")
-                  ? "vscode-tab-active text-base-content"
-                  : "text-base-content/50 hover:text-base-content"
+                  ? "vscode-tab-active text-base-content font-medium"
+                  : "text-base-content/75 hover:text-base-content"
               }`}
             >
               <span className="code-token-keyword">
@@ -117,10 +117,10 @@ export function AppShell({ children }: { children: ReactNode }) {
             </Link>
             <Link
               href="/resume"
-              className={`vscode-tab font-mono flex items-center gap-2 px-4 py-2 whitespace-nowrap transition ${
+              className={`vscode-tab font-mono flex items-center gap-2 px-4 py-2.5 whitespace-nowrap cursor-pointer select-none transition ${
                 pathname.startsWith("/resume")
-                  ? "vscode-tab-active text-base-content"
-                  : "text-base-content/50 hover:text-base-content"
+                  ? "vscode-tab-active text-base-content font-medium"
+                  : "text-base-content/75 hover:text-base-content"
               }`}
             >
               <span className="code-token-string">pdf</span>
@@ -129,7 +129,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
         </div>
 
-        <div className="border-base-300 bg-base-200 text-base-content/60 flex shrink-0 gap-4 overflow-x-auto border-b px-3 py-1.5 text-xs sm:hidden">
+        <div className="border-base-300 bg-base-200 text-base-content/75 flex shrink-0 gap-2 overflow-x-auto border-b px-2 py-1.5 text-xs sm:hidden">
           {nav.map((item) => {
             const active =
               item.href === "/"
@@ -139,8 +139,10 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`inline-flex items-center gap-1 ${
-                  active ? "text-base-content font-medium" : ""
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded transition ${
+                  active
+                    ? "bg-base-100 border border-primary/40 text-base-content font-medium shadow-xs"
+                    : "hover:bg-base-300/40 text-base-content/70"
                 }`}
               >
                 <item.Icon className="h-3.5 w-3.5" aria-hidden />
