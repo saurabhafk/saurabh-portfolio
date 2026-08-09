@@ -11,6 +11,7 @@ import {
   VscFiles,
   VscHome,
   VscBook,
+  VscFilePdf,
 } from "react-icons/vsc";
 import { SocialLink } from "@/components/icons/SocialLink";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
@@ -22,6 +23,7 @@ const nav: { href: string; label: string; Icon: IconType }[] = [
   { href: "/skills", label: "Skills", Icon: VscCode },
   { href: "/writing", label: "Notes", Icon: VscBook },
   { href: "/about", label: "About", Icon: VscAccount },
+  { href: "/resume", label: "Resume", Icon: VscFilePdf },
 ];
 
 function tabLabel(pathname: string) {
@@ -31,6 +33,7 @@ function tabLabel(pathname: string) {
   if (pathname.startsWith("/skills")) return "skills.ts";
   if (pathname.startsWith("/writing")) return "writing.md";
   if (pathname.startsWith("/about")) return "about.md";
+  if (pathname.startsWith("/resume")) return "resume.pdf";
   return "index.tsx";
 }
 
@@ -96,13 +99,33 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="flex h-full flex-col pt-9 pb-6 sm:pl-12">
         <div className="bg-base-200 shrink-0 overflow-x-auto text-xs">
           <div className="flex">
-            <div className="vscode-tab-active vscode-tab font-mono text-base-content flex items-center gap-2 px-4 py-2 whitespace-nowrap">
-              <span className="code-token-keyword">tsx</span>
-              {tabLabel(pathname)}
-            </div>
-            <div className="vscode-tab text-base-content/50 font-mono flex items-center px-4 py-2 whitespace-nowrap">
-              README.md
-            </div>
+            <Link
+              href={pathname.startsWith("/resume") ? "/" : pathname}
+              className={`vscode-tab font-mono flex items-center gap-2 px-4 py-2 whitespace-nowrap transition ${
+                !pathname.startsWith("/resume")
+                  ? "vscode-tab-active text-base-content"
+                  : "text-base-content/50 hover:text-base-content"
+              }`}
+            >
+              <span className="code-token-keyword">
+                {tabLabel(pathname.startsWith("/resume") ? "/" : pathname).endsWith(".ts") ||
+                tabLabel(pathname.startsWith("/resume") ? "/" : pathname).endsWith(".tsx")
+                  ? "tsx"
+                  : "md"}
+              </span>
+              {tabLabel(pathname.startsWith("/resume") ? "/" : pathname)}
+            </Link>
+            <Link
+              href="/resume"
+              className={`vscode-tab font-mono flex items-center gap-2 px-4 py-2 whitespace-nowrap transition ${
+                pathname.startsWith("/resume")
+                  ? "vscode-tab-active text-base-content"
+                  : "text-base-content/50 hover:text-base-content"
+              }`}
+            >
+              <span className="code-token-string">pdf</span>
+              resume
+            </Link>
           </div>
         </div>
 

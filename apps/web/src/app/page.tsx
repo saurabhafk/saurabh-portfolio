@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MarkdownBody } from "@/components/content/MarkdownBody";
 import { OpenChatButton } from "@/components/home/OpenChatButton";
 import { SocialLink } from "@/components/icons/SocialLink";
 import { TechBadge } from "@/components/icons/TechBadge";
@@ -21,7 +22,7 @@ export default function Home() {
             <div className="vscode-panel rounded-box overflow-hidden">
               <div className="border-base-300 bg-base-300/40 flex items-center justify-between border-b px-4 py-2 font-mono text-xs">
                 <span className="code-token-comment">{"// profile.ts"}</span>
-                <span className="badge badge-sm badge-success badge-outline">
+                <span className="badge badge-sm badge-success badge-outline px-3 py-1.5">
                   Open to work
                 </span>
               </div>
@@ -58,7 +59,7 @@ export default function Home() {
 
                   <div className="mt-5 flex flex-wrap items-center gap-3">
                     <div className="stats bg-base-100 border-base-300 stats-horizontal border shadow-none">
-                      <div className="stat px-4 py-3">
+                      <div className="stat px-6 py-3.5">
                         <div className="stat-title text-xs">Experience</div>
                         <div className="stat-value text-primary text-2xl">4</div>
                         <div className="stat-desc">years shipping apps</div>
@@ -69,17 +70,17 @@ export default function Home() {
                     <TechBadge name="typescript" size="md" />
                   </div>
 
-                  <p className="mt-6 max-w-2xl text-base leading-relaxed text-base-content/75 md:text-lg">
-                    {about.body.split("\n\n")[0]}
-                  </p>
+                  <div className="mt-6 max-w-2xl text-base leading-relaxed text-base-content/75 md:text-lg">
+                    <MarkdownBody content={about.body.split("\n\n")[0]} />
+                  </div>
 
                   <div className="mt-4">
                     <p className="font-mono text-xs text-base-content/50">
                       I&apos;ve worked at
                     </p>
-                    <div className="mt-2 flex flex-wrap gap-2">
+                    <div className="mt-2 flex flex-wrap gap-2.5">
                       {companies.map((company) => (
-                        <span key={company} className="badge badge-neutral">
+                        <span key={company} className="badge badge-neutral px-4 py-2.5 text-xs font-medium">
                           {company}
                         </span>
                       ))}
@@ -91,10 +92,10 @@ export default function Home() {
                       <p className="font-mono text-xs text-base-content/50">
                         Certifications
                       </p>
-                      <div className="mt-2 flex flex-wrap items-center gap-2">
+                      <div className="mt-2 flex flex-wrap items-center gap-2.5">
                         <Link
                           href="/about#certifications"
-                          className="badge badge-outline badge-primary gap-1.5 font-mono"
+                          className="badge badge-outline badge-primary gap-1.5 font-mono px-3.5 py-2.5"
                         >
                           <TechIcon
                             name="claude-code"
@@ -106,7 +107,7 @@ export default function Home() {
                           <Link
                             key={cert.id}
                             href={`/about#${cert.id}`}
-                            className="badge badge-ghost font-mono text-xs"
+                            className="badge badge-ghost font-mono text-xs px-3.5 py-2.5"
                           >
                             {cert.name}
                           </Link>
@@ -114,7 +115,7 @@ export default function Home() {
                         {certifications.length > 3 && (
                           <Link
                             href="/about#certifications"
-                            className="badge badge-ghost font-mono text-xs"
+                            className="badge badge-ghost font-mono text-xs px-3.5 py-2.5"
                           >
                             +{certifications.length - 3} more
                           </Link>
@@ -124,15 +125,15 @@ export default function Home() {
                   )}
 
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <Link href="/projects" className="btn btn-primary">
+                    <Link href="/projects" className="btn btn-primary px-6">
                       View portfolio
                     </Link>
-                    <OpenChatButton />
+                    <OpenChatButton className="px-6" />
                     <SocialLink
                       network="email"
                       href="mailto:saurabhsri98@gmail.com"
                       label="Message"
-                      className="btn btn-ghost gap-2"
+                      className="btn btn-ghost gap-2 px-6"
                     />
                   </div>
                 </div>

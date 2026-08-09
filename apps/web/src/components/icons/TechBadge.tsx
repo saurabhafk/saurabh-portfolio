@@ -13,9 +13,9 @@ type TechBadgeProps = {
 };
 
 const sizeClass = {
-  sm: "badge-sm gap-1",
-  md: "gap-1.5",
-  lg: "badge-lg gap-2",
+  sm: "badge-sm gap-1 px-3 py-1",
+  md: "gap-1.5 px-3.5 py-1.5",
+  lg: "badge-lg gap-2 px-4.5 py-2",
 } as const;
 
 const iconSize = {
