@@ -1,18 +1,18 @@
 "use client";
 
-import { VscDownload, VscCloudDownload, VscFilePdf, VscBriefcase, VscCheck, VscCode, VscMortarBoard, VscPerson, VscRocket } from "react-icons/vsc";
+import { VscDownload, VscCloudDownload, VscFilePdf } from "react-icons/vsc";
 import { Reveal } from "@/components/motion/Reveal";
 
 export function ResumeDocumentViewer() {
   return (
-    <div className="space-y-8">
-      {/* PDF Action & Header Bar (Overleaf Style) */}
+    <div className="space-y-6">
+      {/* Action Header Bar */}
       <Reveal>
         <div className="vscode-panel rounded-box overflow-hidden">
           <div className="border-base-300 bg-base-300/40 flex flex-wrap items-center justify-between gap-4 border-b px-4 py-3 font-mono text-xs">
             <div className="flex items-center gap-2">
               <VscFilePdf className="h-4 w-4 text-error" />
-              <span className="code-token-keyword">document</span>
+              <span className="code-token-keyword">resume</span>
               <span className="text-base-content/80 font-semibold">Saurabh_Srivastava_Resume.pdf</span>
             </div>
             <div className="flex flex-wrap items-center gap-2">
@@ -38,46 +38,8 @@ export function ResumeDocumentViewer() {
         </div>
       </Reveal>
 
-      {/* Embedded Document Viewer (Overleaf Output Preview) */}
-      <Reveal delay={0.05}>
-        <div className="vscode-panel rounded-box overflow-hidden shadow-lg">
-          <div className="border-base-300 bg-base-300/40 px-4 py-2 font-mono text-xs flex items-center justify-between border-b">
-            <span className="code-token-comment">{"// Overleaf Document Viewer (Rendered Output)"}</span>
-            <a
-              href="/Saurabh_Srivastava_Resume.pdf"
-              download="Saurabh_Srivastava_Resume.pdf"
-              className="link link-primary font-mono text-xs"
-            >
-              Direct Download ↓
-            </a>
-          </div>
-          <div className="w-full bg-neutral/40 p-3 md:p-6 flex justify-center">
-            <div className="w-full max-w-4xl bg-white shadow-2xl rounded overflow-hidden">
-              <object
-                data="/Saurabh_Srivastava_Resume.pdf#toolbar=1&navpanes=0&scrollbar=1"
-                type="application/pdf"
-                className="h-[800px] md:h-[950px] w-full"
-              >
-                <div className="flex flex-col items-center justify-center p-12 text-center bg-base-100">
-                  <p className="mb-4 text-base-content/70">
-                    Your browser does not support inline PDF viewing.
-                  </p>
-                  <a
-                    href="/Saurabh_Srivastava_Resume.pdf"
-                    download="Saurabh_Srivastava_Resume.pdf"
-                    className="btn btn-primary gap-2"
-                  >
-                    <VscDownload className="h-4 w-4" /> Download Resume PDF
-                  </a>
-                </div>
-              </object>
-            </div>
-          </div>
-        </div>
-      </Reveal>
-
       {/* Clean Web Document View (Matching PDF layout exactly) */}
-      <Reveal delay={0.1}>
+      <Reveal delay={0.05}>
         <div className="vscode-panel rounded-box p-6 md:p-10 font-serif text-base-content bg-base-100 space-y-6">
           <header className="text-center border-b border-base-300 pb-4">
             <h1 className="text-3xl font-bold font-display tracking-tight md:text-4xl text-base-content">
@@ -228,8 +190,9 @@ export function ResumeDocumentViewer() {
             <h2 className="text-sm font-bold tracking-widest uppercase border-b border-base-content/40 pb-1 mb-2 font-display">
               CERTIFICATIONS
             </h2>
-            <div className="text-sm font-sans">
-              Anthropic AI development coursework (Claude/AI tooling) — 2026
+            <div className="flex justify-between items-baseline text-sm font-sans">
+              <div><strong>Skilljar Coursework</strong> — <em>AI-Assisted Development (Claude/Anthropic)</em></div>
+              <div className="text-xs text-base-content/70">8 courses | 2026</div>
             </div>
           </section>
         </div>
