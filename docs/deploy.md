@@ -24,7 +24,7 @@ Push the `dev` branch to GitHub.
 |------|--------|
 | `GEMINI_API_KEY` | from [Google AI Studio](https://aistudio.google.com/apikey) |
 | `GEMINI_EMBED_MODEL` | `gemini-embedding-001` |
-| `GEMINI_CHAT_MODEL` | `gemini-2.0-flash` |
+| `GEMINI_CHAT_MODEL` | `gemini-flash-lite-latest` |
 | `RELEVANCE_THRESHOLD` | `0.35` (optional) |
 
 Leave `NEXT_PUBLIC_API_URL` **unset** so the chat widget calls same-origin `/api/chat`.
