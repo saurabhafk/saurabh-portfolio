@@ -106,5 +106,10 @@ export function loadPortfolioContent(contentDir: string): PortfolioContent {
   );
   certifications.sort((a, b) => b.issuedAt.localeCompare(a.issuedAt));
 
-  return { about, skills, projects, experience, writing, certifications };
+  const resumeTexPath = path.join(contentDir, "resume.tex");
+  const resumeTex = fs.existsSync(resumeTexPath)
+    ? fs.readFileSync(resumeTexPath, "utf8")
+    : undefined;
+
+  return { about, skills, projects, experience, writing, certifications, resumeTex };
 }

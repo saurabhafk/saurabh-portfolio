@@ -60,6 +60,7 @@ export type PortfolioContent = {
   experience: Experience[];
   writing: Writing[];
   certifications: Certification[];
+  resumeTex?: string;
 };
 
 export type ContentChunk = {

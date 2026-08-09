@@ -1,0 +1,129 @@
+\documentclass[10.5pt,letterpaper]{article}
+
+\usepackage[left=0.55in,right=0.55in,top=0.35in,bottom=0.3in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+
+\definecolor{navy}{HTML}{1F3864}
+\definecolor{grey}{HTML}{444444}
+
+\hypersetup{colorlinks=true, urlcolor=navy, linkcolor=navy}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% Section headings: bold, navy, uppercase, thin rule beneath
+\titleformat{\section}
+  {\bfseries\color{navy}\fontsize{11}{13}\selectfont}
+  {}{0pt}{}
+  [\vspace{1pt}{\color{navy}\titlerule[0.8pt]}\vspace{1pt}]
+\titlespacing*{\section}{0pt}{6pt}{2pt}
+
+% Compact bullet list
+\newenvironment{tightlist}{
+  \begin{itemize}[leftmargin=14pt, itemsep=1pt, topsep=2pt, parsep=0pt, partopsep=0pt]
+}{\end{itemize}}
+
+% Row: bold title/company on left, italic grey date/location on right
+\newcommand{\entryheader}[2]{%
+  \noindent{\fontsize{10.5}{12}\selectfont #1}\hfill{\fontsize{9.5}{11}\selectfont\itshape\color{grey} #2}\par\vspace{1pt}
+}
+
+\begin{document}
+
+% ---------- Header ----------
+\begin{center}
+  {\fontsize{20}{22}\selectfont\bfseries\color{navy} Saurabh Srivastava}\\[3pt]
+  {\fontsize{9.5}{11}\selectfont\color{grey}
+    +91-8574131772 \ $|$ \
+    \href{mailto:saurabhsri98@gmail.com}{saurabhsri98@gmail.com} \ $|$ \
+    \href{https://linkedin.com/in/saurabhafk}{linkedin.com/in/saurabhafk} \ $|$ \
+    \href{https://github.com/saurabhafk}{github.com/saurabhafk}
+  }
+\end{center}
+\vspace{-4pt}
+
+% ---------- Summary ----------
+\section{SUMMARY}
+\fontsize{9.5}{11.2}\selectfont
+I'm a React Native developer with 4 years building production iOS and Android apps --- real-time systems, payments, and on-device ML included. I care most about shipping reliable, well-architected code, and I lean on AI tooling like Claude and Cursor to move faster without cutting corners.
+
+% ---------- Technical Skills ----------
+\section{TECHNICAL SKILLS}
+\fontsize{9.5}{11.2}\selectfont
+\textbf{Core:} JavaScript (ES6+), TypeScript, React Native, Redux/Redux Toolkit, Context API\\[2pt]
+\textbf{Integrations \& APIs:} Firebase (Auth, FCM), Notifee, Stripe, Checkr, Intercom, Agora, Socket.io, Branch.io, ML Kit, RN Keychain/Keystore\\[2pt]
+\textbf{Maps \& Location:} Google Maps, Apple Maps, Waze, Google Places Autocomplete\\[2pt]
+\textbf{Testing \& Tooling:} Jest, Detox, React Native Debugger, Git, CI/CD, Expo\\[2pt]
+\textbf{AI-Assisted Development:} ChatGPT, Claude, Claude Code, Cursor --- for rapid prototyping, debugging, and code review\\[2pt]
+\textbf{Practices:} Agile/Scrum, performance profiling \& optimization, cross-functional collaboration
+
+% ---------- Experience ----------
+\section{EXPERIENCE}
+
+\entryheader{\textbf{Software Engineer -- React Native} --- \textbf{\color{navy}Appinventiv Technologies}}{Jul 2023 -- Present \ $|$ \ Noida, UP}
+\fontsize{9.5}{11.2}\selectfont
+\begin{tightlist}
+  \item Led development of high-performance cross-platform apps in React Native, architecting state management with Redux and Context API for reliability at scale.
+  \item Built dynamic multi-page forms, reusable UI components, and interactive data visualizations, cutting new-feature development time across the team.
+  \item Secured authentication via device keychain token storage and Google/Apple auth; shipped in-app purchases, Google Mobile Ads, push/in-app notifications, and Branch.io deep linking.
+  \item Drove Agile ceremonies (sprint planning, code reviews, stand-ups) across the full development lifecycle.
+\end{tightlist}
+
+\entryheader{\textbf{Jr. Software Engineer} --- \textbf{\color{navy}Service Ninjas Pvt. Ltd.}}{Jun 2022 -- Jun 2023 \ $|$ \ Delhi, India}
+\fontsize{9.5}{11.2}\selectfont
+\begin{tightlist}
+  \item Built cross-platform apps using JavaScript, React Native, and Redux; debugged and optimized components for performance.
+  \item Partnered with senior developers to implement UI features and integrate RESTful APIs.
+\end{tightlist}
+
+\entryheader{\textbf{Analyst} --- \textbf{\color{navy}Capgemini}}{Aug 2021 -- May 2022 \ $|$ \ Pune, MH}
+\fontsize{9.5}{11.2}\selectfont
+\begin{tightlist}
+  \item Trained in Java, JavaScript, HTML/CSS, and Salesforce; earned multiple Salesforce skill badges building declarative automations (Flow, Process Builder).
+\end{tightlist}
+
+% ---------- Projects ----------
+\section{PROJECTS}
+
+\entryheader{\textbf{Ponteo} \ {\normalfont\itshape\fontsize{9}{11}\selectfont\color{grey}| US-based dental marketplace app | Firebase, Stripe, ML Kit, Socket.io}}{10 Months}
+\fontsize{9.5}{11.2}\selectfont
+\begin{tightlist}
+  \item Built phone-number-based login alongside Firebase Google/Apple sign-in and React Native Keychain/Keystore for secure token storage; added biometric auth (Face ID/Touch ID), cutting login time 50\% (4s manual entry to 2s) while removing password entry as an attack surface.
+  \item Integrated Stripe for in-app payments and Checkr for automated background verification of dental professionals.
+  \item Replaced manual pull-to-refresh with on-device caching and Socket.io live sync, pushing data updates to the UI instantly as they occurred; added real-time chat via Agora and Intercom support.
+  \item Integrated Google/Apple Maps, Waze, and Places Autocomplete for navigation, plus on-device ML Kit for automatic profile picture background removal.
+\end{tightlist}
+
+\entryheader{\textbf{Yeether App} \ {\normalfont\itshape\fontsize{9}{11}\selectfont\color{grey}| Push Notifications, Google AdMob, IAP}}{Ongoing}
+\fontsize{9.5}{11.2}\selectfont
+\begin{tightlist}
+  \item Built secure Google/Apple sign-in with RN Keychain token storage; integrated Google Mobile Ads and in-app purchases to expand monetization.
+\end{tightlist}
+
+\entryheader{\textbf{Loginext Dispatcher} \ {\normalfont\itshape\fontsize{9}{11}\selectfont\color{grey}| Redux, Data Viz, Google Maps}}{6 Months}
+\fontsize{9.5}{11.2}\selectfont
+\begin{tightlist}
+  \item Built multi-page forms, bar/pie/donut chart visualizations, and Google Maps clustering for analytics-driven dispatch decisions.
+\end{tightlist}
+
+\entryheader{\textbf{Rainbow Hospitals} \ {\normalfont\itshape\fontsize{9}{11}\selectfont\color{grey}| Custom Chat, Video, Scheduling}}{4 Months}
+\fontsize{9.5}{11.2}\selectfont
+\begin{tightlist}
+  \item Built in-person/virtual consultation scheduling with Agora video consultations and a period-tracking feature for preventive women's healthcare.
+\end{tightlist}
+
+% ---------- Education ----------
+\section{EDUCATION}
+\entryheader{\textbf{B.Tech, Information Technology} --- Noida Institute of Engineering \& Technology}{2017 -- 2021}
+
+% ---------- Certifications ----------
+\section{CERTIFICATIONS}
+\entryheader{\textbf{Skilljar Coursework --- AI-Assisted Development (Claude/Anthropic)}}{8 courses \ $|$ \ 2026}
+
+\end{document}
